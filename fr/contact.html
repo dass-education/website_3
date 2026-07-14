@@ -12,21 +12,51 @@
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="logo">DASS <span>Montréal</span><small>Language School</small></a>
-    <nav class="main-nav" id="main-nav">
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="english-course.html">Cours d'anglais</a></li>
-        <li><a href="french-course.html">Cours de français</a></li>
-        <li><a href="contact.html" aria-current="page">Contact</a></li>
-      </ul>
+    <div class="header-actions">
       <div class="lang-switch">
         <a href="../contact.html">日本語</a> | <a href="../en/contact.html">English</a> | <a href="contact.html" class="active">Français</a>
       </div>
-    </nav>
-    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+      <a href="quote.html" class="btn btn-cta btn-sm">Devis rapide</a>
+      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
+  <nav class="main-nav" id="main-nav">
+    <div class="container">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li class="has-dropdown">
+          <div class="has-dropdown-row">
+            <a href="courses.html">Cours</a>
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-label="Afficher/masquer le menu des cours">▾</button>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-col">
+              <span class="dropdown-heading">Anglais</span>
+              <a href="english-course.html#general-english">Anglais général</a>
+              <a href="english-course.html#intensive-english">Anglais intensif</a>
+              <a href="english-course.html#ielts">Préparation à l'IELTS</a>
+            </div>
+            <div class="dropdown-col">
+              <span class="dropdown-heading">Français</span>
+              <a href="french-course.html#general-french">Français général</a>
+              <a href="french-course.html#intensive-french">Français intensif</a>
+              <a href="french-course.html#delf-dalf">Préparation au DELF/DALF</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="accommodation.html">Hébergement</a></li>
+        <li><a href="tuition-fees.html">Frais de scolarité</a></li>
+        <li><a href="about.html">À propos de DASS</a></li>
+        <li><a href="life-in-montreal.html">Vivre à Montréal</a></li>
+        <li><a href="japanese-support.html">Support en japonais</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 </header>
 
 <main>
@@ -88,11 +118,23 @@
       <p>Choisissez l'anglais ou le français. Découvrez la ville bilingue et dynamique de Montréal.</p>
     </div>
     <div class="footer-col">
-      <h4>Plan du site</h4>
+      <h4>Cours</h4>
       <ul>
-        <li><a href="index.html">Accueil</a></li>
+        <li><a href="courses.html">Tous les cours</a></li>
         <li><a href="english-course.html">Cours d'anglais</a></li>
         <li><a href="french-course.html">Cours de français</a></li>
+        <li><a href="tuition-fees.html">Frais de scolarité</a></li>
+        <li><a href="accommodation.html">Hébergement</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>À propos</h4>
+      <ul>
+        <li><a href="about.html">À propos de DASS</a></li>
+        <li><a href="life-in-montreal.html">Vivre à Montréal</a></li>
+        <li><a href="japanese-support.html">Support en japonais</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="faq.html">FAQ</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="../privacy-policy.html">Politique de confidentialité</a></li>
       </ul>
@@ -111,6 +153,10 @@
   </div>
 </footer>
 
+<script src="../js/pricing-data.js"></script>
+<script src="../js/pricing-engine.js"></script>
+<script src="../js/pricing-i18n.js"></script>
+<script src="../js/contact-handoff.js"></script>
 <script src="../js/script.js"></script>
 </body>
 </html>

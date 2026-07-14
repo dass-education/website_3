@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devis rapide | DASS Montréal Language School</title>
+<meta name="description" content="Simulateur de devis rapide de DASS Montréal Language School. Indiquez votre cours, votre durée et vos préférences d'hébergement pour obtenir instantanément un coût de référence estimé.">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">DASS <span>Montréal</span><small>Language School</small></a>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <a href="../quote.html">日本語</a> | <a href="../en/quote.html">English</a> | <a href="quote.html" class="active">Français</a>
+      </div>
+      <a href="quote.html" class="btn btn-cta btn-sm">Devis rapide</a>
+      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="main-nav" id="main-nav">
+    <div class="container">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li class="has-dropdown">
+          <div class="has-dropdown-row">
+            <a href="courses.html">Cours</a>
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-label="Afficher/masquer le menu des cours">▾</button>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-col">
+              <span class="dropdown-heading">Anglais</span>
+              <a href="english-course.html#general-english">Anglais général</a>
+              <a href="english-course.html#intensive-english">Anglais intensif</a>
+              <a href="english-course.html#ielts">Préparation à l'IELTS</a>
+            </div>
+            <div class="dropdown-col">
+              <span class="dropdown-heading">Français</span>
+              <a href="french-course.html#general-french">Français général</a>
+              <a href="french-course.html#intensive-french">Français intensif</a>
+              <a href="french-course.html#delf-dalf">Préparation au DELF/DALF</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="accommodation.html">Hébergement</a></li>
+        <li><a href="tuition-fees.html">Frais de scolarité</a></li>
+        <li><a href="about.html">À propos de DASS</a></li>
+        <li><a href="life-in-montreal.html">Vivre à Montréal</a></li>
+        <li><a href="japanese-support.html">Support en japonais</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1519178614-68673b201f36?auto=format&fit=crop&w=1920&q=80');">
+    <div class="container hero-inner">
+      <div class="hero-card">
+        <span class="hero-eyebrow">DEVIS RAPIDE</span>
+        <h1>Devis rapide</h1>
+        <p class="hero-sub">Indiquez votre cours, votre durée et vos préférences d'hébergement : un coût de référence estimé s'affiche instantanément au fur et à mesure.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="notice-box js-temp-notice" style="max-width:900px; margin: 0 auto 40px;">
+        <strong>À propos des tarifs de référence</strong><br>
+        <span class="js-temp-notice-text"></span>
+      </div>
+
+      <form class="quote-form" id="quote-form" novalidate>
+        <fieldset>
+          <legend>1. Choisissez un cours</legend>
+          <div class="field">
+            <label>Langue <span class="required-mark">Obligatoire</span></label>
+            <div class="radio-group">
+              <label><input type="radio" name="quote-language" value="english" required>Cours d'anglais</label>
+              <label><input type="radio" name="quote-language" value="french" required>Cours de français</label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="quote-course">Cours <span class="required-mark">Obligatoire</span></label>
+            <select id="quote-course" name="quote-course" required aria-describedby="quote-course-error">
+              <option value="" disabled selected>Choisissez d'abord une langue</option>
+            </select>
+            <p class="field-error" id="quote-course-error" role="alert" hidden></p>
+            <p class="field-hint">Voir le détail des cours sur la <a href="courses.html" style="color:var(--color-accent);">page Cours</a>.</p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Âge, durée et date de début</legend>
+          <div class="field-row">
+            <div class="field">
+              <label for="quote-age">Âge <span class="required-mark">Obligatoire</span></label>
+              <input type="number" id="quote-age" name="quote-age" min="1" max="99" step="1" required aria-describedby="quote-age-error">
+              <p class="field-error" id="quote-age-error" role="alert" hidden></p>
+            </div>
+            <div class="field">
+              <label for="quote-weeks">Durée du cours (semaines) <span class="required-mark">Obligatoire</span></label>
+              <input type="number" id="quote-weeks" name="quote-weeks" placeholder="ex. 12" min="1" max="52" step="1" required aria-describedby="quote-weeks-error">
+              <p class="field-error" id="quote-weeks-error" role="alert" hidden></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="quote-start">Date de début souhaitée <span class="required-mark">Obligatoire</span></label>
+            <input type="date" id="quote-start" name="quote-start" required aria-describedby="quote-start-error">
+            <p class="field-error" id="quote-start-error" role="alert" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Hébergement</legend>
+          <div class="field">
+            <label for="quote-stay">Hébergement <span class="required-mark">Obligatoire</span></label>
+            <select id="quote-stay" name="quote-stay" required aria-describedby="quote-stay-error">
+              <option value="" disabled selected>Choisissez un type d'hébergement</option>
+              <option value="homestay">Famille d'accueil</option>
+              <option value="residence">Résidence étudiante</option>
+              <option value="self">Logement personnel (sans réservation)</option>
+              <option value="undecided">Pas encore décidé</option>
+            </select>
+            <p class="field-error" id="quote-stay-error" role="alert" hidden></p>
+          </div>
+          <div class="field" id="quote-room-field" hidden>
+            <label for="quote-room">Type de chambre <span class="required-mark">Obligatoire</span></label>
+            <select id="quote-room" name="quote-room" aria-describedby="quote-room-error"></select>
+            <p class="field-error" id="quote-room-error" role="alert" hidden></p>
+          </div>
+          <div class="field" id="quote-meal-field" hidden>
+            <label for="quote-meal">Formule de repas</label>
+            <select id="quote-meal" name="quote-meal"></select>
+          </div>
+          <div class="field" id="quote-stay-weeks-field" hidden>
+            <label for="quote-stay-weeks">Durée de l'hébergement (semaines) <span class="required-mark">Obligatoire</span></label>
+            <input type="number" id="quote-stay-weeks" name="quote-stay-weeks" min="1" max="52" step="1" aria-describedby="quote-stay-weeks-error">
+            <p class="field-error" id="quote-stay-weeks-error" role="alert" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Services additionnels</legend>
+          <div class="field">
+            <label for="quote-airport">Transfert aéroport</label>
+            <select id="quote-airport" name="quote-airport">
+              <option value="none">Non requis</option>
+              <option value="oneWay">Aller simple</option>
+              <option value="roundTrip">Aller-retour</option>
+            </select>
+          </div>
+          <div class="field">
+            <label><input type="checkbox" id="quote-insurance" name="quote-insurance"> Ajouter l'assurance voyage</label>
+          </div>
+          <div class="field" id="quote-minor-section" hidden>
+            <label>Accompagnement des mineurs</label>
+            <div class="radio-group">
+              <label><input type="radio" name="quote-minor-support" value="no" checked>Non requis</label>
+              <label><input type="radio" name="quote-minor-support" value="yes">Ajouter</label>
+            </div>
+            <p class="field-hint" id="quote-minor-notice" hidden>Les conditions d'accueil des mineurs, l'hébergement, le transfert aéroport et les documents requis doivent être confirmés individuellement.</p>
+          </div>
+        </fieldset>
+
+        <div class="quote-submit-row">
+          <button type="button" class="btn btn-outline" id="quote-reset">Réinitialiser</button>
+          <button type="button" class="btn btn-outline" id="quote-print">Imprimer / Enregistrer en PDF</button>
+          <button type="button" class="btn btn-cta" id="quote-to-contact">Transférer ces informations au formulaire de contact</button>
+        </div>
+      </form>
+
+      <section class="quote-result" id="quote-result-section" aria-live="polite">
+        <p id="quote-result-empty">Remplissez les champs requis pour afficher automatiquement votre estimation.</p>
+        <div id="quote-result-content" hidden>
+          <h2>Votre estimation</h2>
+          <div class="notice-box js-temp-notice" id="quote-disclaimer" hidden></div>
+          <div id="quote-cost-breakdown" class="quote-result-list"></div>
+          <div class="quote-result-row quote-result-total" id="quote-total-row">
+            <span class="quote-result-label" id="quote-total-label"></span>
+            <span class="quote-result-value" id="quote-total-value"></span>
+          </div>
+          <div class="notice-box" id="quote-exam-message" hidden></div>
+        </div>
+      </section>
+
+      <div class="notice-box">
+        <strong>À propos des tarifs de référence</strong><br>
+        Les noms de cours et les éléments de tarification affichés sur cette page sont basés sur les tarifs de référence indiqués sur la <a href="tuition-fees.html" style="color: var(--color-accent); font-weight:700;">page des frais de scolarité</a>, établis pendant la préparation à l'ouverture. Ce ne sont pas les tarifs officiels de DASS et ils peuvent changer. Merci de confirmer les montants exacts lors d'une consultation gratuite.
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="no-print">
+    <div class="final-cta">
+      <h2>Pour un devis officiel, réservez une consultation gratuite</h2>
+      <p>Nos conseillers parlant japonais vous accompagnent sur les combinaisons de cours et d'hébergement, en japonais.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-cta">Consultation gratuite</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand">DASS Montréal Language School</div>
+      <p>Choisissez l'anglais ou le français. Découvrez la ville bilingue et dynamique de Montréal.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Cours</h4>
+      <ul>
+        <li><a href="courses.html">Tous les cours</a></li>
+        <li><a href="english-course.html">Cours d'anglais</a></li>
+        <li><a href="french-course.html">Cours de français</a></li>
+        <li><a href="tuition-fees.html">Frais de scolarité</a></li>
+        <li><a href="accommodation.html">Hébergement</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>À propos</h4>
+      <ul>
+        <li><a href="about.html">À propos de DASS</a></li>
+        <li><a href="life-in-montreal.html">Vivre à Montréal</a></li>
+        <li><a href="japanese-support.html">Support en japonais</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="../privacy-policy.html">Politique de confidentialité</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Langue</h4>
+      <ul>
+        <li><a href="../quote.html">日本語</a></li>
+        <li><a href="../en/quote.html">English</a></li>
+        <li><a href="quote.html">Français</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 DASS Montréal Language School. Tous droits réservés.</span>
+  </div>
+</footer>
+
+<script src="../js/pricing-data.js"></script>
+<script src="../js/pricing-engine.js"></script>
+<script src="../js/pricing-i18n.js"></script>
+<script src="../js/quote.js"></script>
+<script src="../js/script.js"></script>
+</body>
+</html>

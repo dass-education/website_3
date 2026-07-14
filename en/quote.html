@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get a Quote | DASS Montréal Language School</title>
+<meta name="description" content="Quick quote estimator for DASS Montréal Language School. Enter your course, duration, and accommodation preferences to see an estimated reference cost instantly.">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">DASS <span>Montréal</span><small>Language School</small></a>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <a href="../quote.html">日本語</a> | <a href="quote.html" class="active">English</a> | <a href="../fr/quote.html">Français</a>
+      </div>
+      <a href="quote.html" class="btn btn-cta btn-sm">Get a Quote</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="main-nav" id="main-nav">
+    <div class="container">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown">
+          <div class="has-dropdown-row">
+            <a href="courses.html">Courses</a>
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-label="Toggle courses menu">▾</button>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-col">
+              <span class="dropdown-heading">English</span>
+              <a href="english-course.html#general-english">General English</a>
+              <a href="english-course.html#intensive-english">Intensive English</a>
+              <a href="english-course.html#ielts">IELTS Preparation</a>
+            </div>
+            <div class="dropdown-col">
+              <span class="dropdown-heading">French</span>
+              <a href="french-course.html#general-french">General French</a>
+              <a href="french-course.html#intensive-french">Intensive French</a>
+              <a href="french-course.html#delf-dalf">DELF/DALF Preparation</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="accommodation.html">Accommodation</a></li>
+        <li><a href="tuition-fees.html">Tuition &amp; Fees</a></li>
+        <li><a href="about.html">About DASS</a></li>
+        <li><a href="life-in-montreal.html">Life in Montréal</a></li>
+        <li><a href="japanese-support.html">Japanese Support</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1519178614-68673b201f36?auto=format&fit=crop&w=1920&q=80');">
+    <div class="container hero-inner">
+      <div class="hero-card">
+        <span class="hero-eyebrow">GET A QUOTE</span>
+        <h1>Get a Quote</h1>
+        <p class="hero-sub">Enter your course, duration, and accommodation preferences and an estimated reference cost is calculated instantly as you go.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="notice-box js-temp-notice" style="max-width:900px; margin: 0 auto 40px;">
+        <strong>About reference pricing</strong><br>
+        <span class="js-temp-notice-text"></span>
+      </div>
+
+      <form class="quote-form" id="quote-form" novalidate>
+        <fieldset>
+          <legend>1. Choose a course</legend>
+          <div class="field">
+            <label>Language <span class="required-mark">Required</span></label>
+            <div class="radio-group">
+              <label><input type="radio" name="quote-language" value="english" required>English Course</label>
+              <label><input type="radio" name="quote-language" value="french" required>French Course</label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="quote-course">Course <span class="required-mark">Required</span></label>
+            <select id="quote-course" name="quote-course" required aria-describedby="quote-course-error">
+              <option value="" disabled selected>Select a language first</option>
+            </select>
+            <p class="field-error" id="quote-course-error" role="alert" hidden></p>
+            <p class="field-hint">See course details on the <a href="courses.html" style="color:var(--color-accent);">Courses page</a>.</p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Age, duration &amp; start date</legend>
+          <div class="field-row">
+            <div class="field">
+              <label for="quote-age">Age <span class="required-mark">Required</span></label>
+              <input type="number" id="quote-age" name="quote-age" min="1" max="99" step="1" required aria-describedby="quote-age-error">
+              <p class="field-error" id="quote-age-error" role="alert" hidden></p>
+            </div>
+            <div class="field">
+              <label for="quote-weeks">Course duration (weeks) <span class="required-mark">Required</span></label>
+              <input type="number" id="quote-weeks" name="quote-weeks" placeholder="e.g. 12" min="1" max="52" step="1" required aria-describedby="quote-weeks-error">
+              <p class="field-error" id="quote-weeks-error" role="alert" hidden></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="quote-start">Preferred start date <span class="required-mark">Required</span></label>
+            <input type="date" id="quote-start" name="quote-start" required aria-describedby="quote-start-error">
+            <p class="field-error" id="quote-start-error" role="alert" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Accommodation</legend>
+          <div class="field">
+            <label for="quote-stay">Accommodation <span class="required-mark">Required</span></label>
+            <select id="quote-stay" name="quote-stay" required aria-describedby="quote-stay-error">
+              <option value="" disabled selected>Select an accommodation type</option>
+              <option value="homestay">Homestay</option>
+              <option value="residence">Student Residence</option>
+              <option value="self">Self-arranged (no accommodation booking)</option>
+              <option value="undecided">Not decided yet</option>
+            </select>
+            <p class="field-error" id="quote-stay-error" role="alert" hidden></p>
+          </div>
+          <div class="field" id="quote-room-field" hidden>
+            <label for="quote-room">Room type <span class="required-mark">Required</span></label>
+            <select id="quote-room" name="quote-room" aria-describedby="quote-room-error"></select>
+            <p class="field-error" id="quote-room-error" role="alert" hidden></p>
+          </div>
+          <div class="field" id="quote-meal-field" hidden>
+            <label for="quote-meal">Meal plan</label>
+            <select id="quote-meal" name="quote-meal"></select>
+          </div>
+          <div class="field" id="quote-stay-weeks-field" hidden>
+            <label for="quote-stay-weeks">Accommodation duration (weeks) <span class="required-mark">Required</span></label>
+            <input type="number" id="quote-stay-weeks" name="quote-stay-weeks" min="1" max="52" step="1" aria-describedby="quote-stay-weeks-error">
+            <p class="field-error" id="quote-stay-weeks-error" role="alert" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Additional services</legend>
+          <div class="field">
+            <label for="quote-airport">Airport transfer</label>
+            <select id="quote-airport" name="quote-airport">
+              <option value="none">Not needed</option>
+              <option value="oneWay">One-way</option>
+              <option value="roundTrip">Round-trip</option>
+            </select>
+          </div>
+          <div class="field">
+            <label><input type="checkbox" id="quote-insurance" name="quote-insurance"> Add overseas insurance</label>
+          </div>
+          <div class="field" id="quote-minor-section" hidden>
+            <label>Minor student support</label>
+            <div class="radio-group">
+              <label><input type="radio" name="quote-minor-support" value="no" checked>Not needed</label>
+              <label><input type="radio" name="quote-minor-support" value="yes">Add this</label>
+            </div>
+            <p class="field-hint" id="quote-minor-notice" hidden>Acceptance conditions, accommodation, airport transfer, and required documents for minors must be confirmed individually.</p>
+          </div>
+        </fieldset>
+
+        <div class="quote-submit-row">
+          <button type="button" class="btn btn-outline" id="quote-reset">Reset</button>
+          <button type="button" class="btn btn-outline" id="quote-print">Print / Save as PDF</button>
+          <button type="button" class="btn btn-cta" id="quote-to-contact">Continue to the contact form with these details</button>
+        </div>
+      </form>
+
+      <section class="quote-result" id="quote-result-section" aria-live="polite">
+        <p id="quote-result-empty">Fill in the required fields to see your estimate automatically.</p>
+        <div id="quote-result-content" hidden>
+          <h2>Your Estimate</h2>
+          <div class="notice-box js-temp-notice" id="quote-disclaimer" hidden></div>
+          <div id="quote-cost-breakdown" class="quote-result-list"></div>
+          <div class="quote-result-row quote-result-total" id="quote-total-row">
+            <span class="quote-result-label" id="quote-total-label"></span>
+            <span class="quote-result-value" id="quote-total-value"></span>
+          </div>
+          <div class="notice-box" id="quote-exam-message" hidden></div>
+        </div>
+      </section>
+
+      <div class="notice-box">
+        <strong>About reference pricing</strong><br>
+        The course names and fee items shown on this page are based on the reference pricing shown on the <a href="tuition-fees.html" style="color: var(--color-accent); font-weight:700;">Tuition &amp; Fees page</a>, which reflects pre-opening preparation estimates. These are not DASS's official prices and may change. Please confirm exact amounts during a free consultation.
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="no-print">
+    <div class="final-cta">
+      <h2>For an official quote, book a free consultation</h2>
+      <p>Our Japanese-speaking counselors will walk you through course and accommodation combinations, in Japanese.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-cta">Free Consultation</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand">DASS Montréal Language School</div>
+      <p>Choose English or French. Experience the vibrant bilingual city of Montreal.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Courses</h4>
+      <ul>
+        <li><a href="courses.html">All Courses</a></li>
+        <li><a href="english-course.html">English Course</a></li>
+        <li><a href="french-course.html">French Course</a></li>
+        <li><a href="tuition-fees.html">Tuition &amp; Fees</a></li>
+        <li><a href="accommodation.html">Accommodation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="about.html">About DASS</a></li>
+        <li><a href="life-in-montreal.html">Life in Montréal</a></li>
+        <li><a href="japanese-support.html">Japanese Support</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Language</h4>
+      <ul>
+        <li><a href="../quote.html">日本語</a></li>
+        <li><a href="quote.html">English</a></li>
+        <li><a href="../fr/quote.html">Français</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 DASS Montréal Language School. All rights reserved.</span>
+  </div>
+</footer>
+
+<script src="../js/pricing-data.js"></script>
+<script src="../js/pricing-engine.js"></script>
+<script src="../js/pricing-i18n.js"></script>
+<script src="../js/quote.js"></script>
+<script src="../js/script.js"></script>
+</body>
+</html>

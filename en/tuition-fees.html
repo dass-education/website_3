@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | DASS Montréal Language School</title>
-<meta name="description" content="Contact DASS Montréal Language School to book a free consultation about the English Course or French Course.">
+<title>Tuition &amp; Fees | DASS Montréal Language School</title>
+<meta name="description" content="Reference pricing for DASS Montréal Language School. Weekly tuition for General, Intensive, and Exam Preparation courses (English &amp; French), plus other reference fees such as registration and materials.">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
     <a href="index.html" class="logo">DASS <span>Montréal</span><small>Language School</small></a>
     <div class="header-actions">
       <div class="lang-switch">
-        <a href="../contact.html">日本語</a> | <a href="contact.html" class="active">English</a> | <a href="../fr/contact.html">Français</a>
+        <a href="../tuition-fees.html">日本語</a> | <a href="tuition-fees.html" class="active">English</a> | <a href="../fr/tuition-fees.html">Français</a>
       </div>
       <a href="quote.html" class="btn btn-cta btn-sm">Get a Quote</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
@@ -47,13 +47,13 @@
           </div>
         </li>
         <li><a href="accommodation.html">Accommodation</a></li>
-        <li><a href="tuition-fees.html">Tuition &amp; Fees</a></li>
+        <li><a href="tuition-fees.html" aria-current="page">Tuition &amp; Fees</a></li>
         <li><a href="about.html">About DASS</a></li>
         <li><a href="life-in-montreal.html">Life in Montréal</a></li>
         <li><a href="japanese-support.html">Japanese Support</a></li>
         <li><a href="admissions.html">Admissions</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact.html" aria-current="page">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -61,50 +61,72 @@
 
 <main>
 
-  <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1519832979-6fa011b87667?auto=format&fit=crop&w=1920&q=80');">
+  <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80');">
     <div class="container hero-inner">
       <div class="hero-card">
-        <span class="hero-eyebrow">CONTACT</span>
-        <h1>Contact Us</h1>
-        <p class="hero-sub">Have a question about the English or French Course? Book a free consultation — we're happy to help.</p>
+        <span class="hero-eyebrow">TUITION &amp; FEES</span>
+        <h1>Tuition &amp; Fees</h1>
+        <p class="hero-sub">Weekly tuition by course and duration, plus reference costs for registration, materials, and more. All prices are in Canadian dollars (CAD), per student.</p>
       </div>
     </div>
   </section>
 
   <section>
     <div class="container">
-      <div class="contact-layout">
-        <div class="contact-info">
-          <h2>Getting in touch</h2>
-          <p>Fill out the form and submit it — our team will get back to you within 2–3 business days.</p>
 
-          <h3>We're happy to help with</h3>
-          <ul class="contact-topics">
-            <li><span class="icon">✅</span> English Course</li>
-            <li><span class="icon">✅</span> French Course</li>
-            <li><span class="icon">✅</span> Study abroad consultation</li>
-            <li><span class="icon">✅</span> Brochure request</li>
-            <li><span class="icon">✅</span> General inquiry</li>
-          </ul>
+      <div class="notice-box js-temp-notice">
+        <strong>About reference pricing (as of July 2026)</strong><br>
+        <span class="js-temp-notice-text"></span>
+      </div>
 
-          <h3>Support</h3>
-          <ul>
-            <li><span class="icon">🇯🇵</span> Support available in Japanese from our counselors</li>
-            <li><span class="icon">💻</span> Online one-on-one consultations available</li>
-          </ul>
-        </div>
+      <div class="section-header">
+        <span class="section-eyebrow">Course Fees</span>
+        <h2>Course tuition (weekly rate)</h2>
+        <p>The weekly rate decreases as your enrollment duration increases. Lesson counts are shown alongside each rate.</p>
+      </div>
 
-        <div class="form-embed-wrapper">
-          <h2 style="margin-bottom: 16px;">Inquiry Form</h2>
-          <p class="form-embed-note">The FormMailer inquiry form appears below.</p>
-          <div class="formmailer-html-container">
-            <!-- Paste FormMailer HTML embed code here -->
-            <div class="formmailer-placeholder-note">
-              <strong>Space reserved for the FormMailer HTML embed code</strong>
-              Paste the HTML embed code generated in your FormMailer dashboard in place of the comment above.
-            </div>
-          </div>
-        </div>
+      <span id="general-english-price"></span><span id="general-french-price"></span>
+      <div id="general-table-container"></div>
+
+      <span id="intensive-english-price"></span><span id="intensive-french-price"></span>
+      <div id="intensive-table-container"></div>
+
+      <span id="ielts-price"></span><span id="delf-dalf-price"></span>
+      <div id="exam-table-container"></div>
+      <div class="notice-box notice-inline" id="exam-table-note"></div>
+
+      <div class="section-header" style="margin-top: 64px;">
+        <span class="section-eyebrow">Other Fees</span>
+        <h2>Other reference fees</h2>
+        <p>Reference amounts for costs beyond course tuition, such as registration, materials, and accommodation arrangement (as of July 2026).</p>
+      </div>
+
+      <div id="other-fees-table-container"></div>
+
+      <div class="section-header" style="margin-top: 64px;">
+        <span class="section-eyebrow">Accommodation Fees</span>
+        <h2>Reference accommodation pricing</h2>
+        <p>Reference weekly rates for homestay and student residence options (as of July 2026). See the <a href="accommodation.html" style="color:var(--color-accent); font-weight:700;">Accommodation page</a> for details on each option.</p>
+      </div>
+
+      <div id="homestay-table-container"></div>
+      <div class="notice-box notice-inline">
+        Homestay rates vary by host family and meal plan (no meals, breakfast only, 2 meals, 3 meals, etc.).
+      </div>
+
+      <div id="residence-table-container"></div>
+      <div class="notice-box notice-inline">
+        Student residence / shared residence rates vary by property, room type, amenities, season, and minimum stay requirements.
+      </div>
+
+      <div class="notice-box js-temp-notice">
+        <strong>Please note (as of July 2026)</strong><br>
+        Class hours, lesson counts, start dates, and class sizes are subject to change. <span class="js-temp-notice-text"></span> Please confirm details before enrolling.
+      </div>
+
+      <div style="text-align:center; margin-top: 8px;">
+        <a href="quote.html" class="btn btn-outline">Try the Quick Quote</a>
+        <a href="contact.html" class="btn btn-cta">Request an Official Quote</a>
       </div>
     </div>
   </section>
@@ -142,9 +164,9 @@
     <div class="footer-col">
       <h4>Language</h4>
       <ul>
-        <li><a href="../contact.html">日本語</a></li>
-        <li><a href="contact.html">English</a></li>
-        <li><a href="../fr/contact.html">Français</a></li>
+        <li><a href="../tuition-fees.html">日本語</a></li>
+        <li><a href="tuition-fees.html">English</a></li>
+        <li><a href="../fr/tuition-fees.html">Français</a></li>
       </ul>
     </div>
   </div>
@@ -156,7 +178,7 @@
 <script src="../js/pricing-data.js"></script>
 <script src="../js/pricing-engine.js"></script>
 <script src="../js/pricing-i18n.js"></script>
-<script src="../js/contact-handoff.js"></script>
+<script src="../js/tuition-fees.js"></script>
 <script src="../js/script.js"></script>
 </body>
 </html>

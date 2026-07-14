@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DASS Montréal Language School | Étudiez l'anglais ou le français à Montréal</title>
-<meta name="description" content="DASS Montréal Language School aide les étudiants japonais à choisir l'anglais ou le français et à étudier dans la ville bilingue de Montréal, au Canada, grâce à des parcours de cours ciblés.">
+<meta name="description" content="DASS Montréal Language School aide les étudiants à choisir l'anglais ou le français et à étudier dans la ville bilingue de Montréal. Comparez facilement les cours, les frais, l'hébergement et le soutien proposé.">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -12,21 +12,51 @@
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="logo">DASS <span>Montréal</span><small>Language School</small></a>
-    <nav class="main-nav" id="main-nav">
-      <ul>
-        <li><a href="index.html" aria-current="page">Accueil</a></li>
-        <li><a href="english-course.html">Cours d'anglais</a></li>
-        <li><a href="french-course.html">Cours de français</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+    <div class="header-actions">
       <div class="lang-switch">
         <a href="../index.html">日本語</a> | <a href="../en/index.html">English</a> | <a href="index.html" class="active">Français</a>
       </div>
-    </nav>
-    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+      <a href="quote.html" class="btn btn-cta btn-sm">Devis rapide</a>
+      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
+  <nav class="main-nav" id="main-nav">
+    <div class="container">
+      <ul>
+        <li><a href="index.html" aria-current="page">Accueil</a></li>
+        <li class="has-dropdown">
+          <div class="has-dropdown-row">
+            <a href="courses.html">Cours</a>
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-label="Afficher/masquer le menu des cours">▾</button>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-col">
+              <span class="dropdown-heading">Anglais</span>
+              <a href="english-course.html#general-english">Anglais général</a>
+              <a href="english-course.html#intensive-english">Anglais intensif</a>
+              <a href="english-course.html#ielts">Préparation à l'IELTS</a>
+            </div>
+            <div class="dropdown-col">
+              <span class="dropdown-heading">Français</span>
+              <a href="french-course.html#general-french">Français général</a>
+              <a href="french-course.html#intensive-french">Français intensif</a>
+              <a href="french-course.html#delf-dalf">Préparation au DELF/DALF</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="accommodation.html">Hébergement</a></li>
+        <li><a href="tuition-fees.html">Frais de scolarité</a></li>
+        <li><a href="about.html">À propos de DASS</a></li>
+        <li><a href="life-in-montreal.html">Vivre à Montréal</a></li>
+        <li><a href="japanese-support.html">Support en japonais</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 </header>
 
 <main>
@@ -35,50 +65,126 @@
   <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1519178614-68673b201f36?auto=format&fit=crop&w=1920&q=80');">
     <div class="container hero-inner">
       <div class="hero-card">
-        <span class="hero-eyebrow">Accompagnement pour étudiants japonais</span>
-        <h1>Choisissez l'anglais ou le français. Découvrez la ville bilingue et dynamique de Montréal.</h1>
-        <p class="hero-sub">DASS Montréal Language School propose deux parcours clairement distincts — un cours d'anglais et un cours de français — pour vous permettre de vous concentrer pleinement sur la langue qui correspond à vos objectifs.</p>
+        <span class="hero-eyebrow">Accompagnement pour étudiants</span>
+        <h1>Étudiez l'anglais ou le français,<br>à Montréal</h1>
+        <ul class="hero-list">
+          <li>6 cours en anglais et en français</li>
+          <li>24 ou 30 cours par semaine</li>
+          <li>Programmes dès 1 semaine</li>
+          <li>Préparation aux examens généralement dès 4 semaines</li>
+          <li>Famille d'accueil ou résidence étudiante</li>
+          <li>Accompagnement en japonais</li>
+          <li>Tarif de référence dès CAD 365/semaine<sup>*</sup></li>
+        </ul>
+        <p style="font-size:0.82rem; color:var(--color-text-soft); margin:-8px 0 18px;">*CAD 365/semaine correspond au tarif de l'anglais général ou du français général pour une inscription de 25 à 52 semaines (tarif de référence en juillet 2026). Voir la page <a href="tuition-fees.html" style="color:var(--color-accent); font-weight:700;">Frais de scolarité</a> pour le détail.</p>
         <div class="hero-actions">
-          <a href="english-course.html" class="btn btn-cta">Voir le cours d'anglais</a>
-          <a href="french-course.html" class="btn btn-outline">Voir le cours de français</a>
+          <a href="courses.html" class="btn btn-cta">Voir les cours</a>
+          <a href="tuition-fees.html" class="btn btn-outline">Voir les frais</a>
+          <a href="quote.html" class="btn btn-outline">Devis rapide</a>
+          <a href="contact.html" class="btn btn-outline">Consultation gratuite</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Course selection -->
+  <!-- 6 courses -->
   <section id="courses">
     <div class="container">
       <div class="section-header">
         <span class="section-eyebrow">Choisissez votre voie</span>
-        <h2>Deux cours. Choisissez celui qui correspond à votre objectif.</h2>
+        <h2>Six cours. Choisissez celui qui correspond à votre objectif.</h2>
         <p>Chez DASS, vous n'aurez pas à apprendre l'anglais et le français en même temps. Choisissez plutôt un cours ciblé et concentrez-vous pleinement dessus.</p>
       </div>
 
-      <div class="course-grid">
-        <article class="course-card course-card--en">
-          <div class="course-card-image">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="Étudiants apprenant l'anglais dans une salle de classe lumineuse">
-          </div>
-          <div class="course-card-body">
+      <div class="grid-3">
+        <article class="mini-course-card mini-course-card--en">
+          <div class="mini-course-card-body">
             <span class="course-card-tag">COURS D'ANGLAIS</span>
-            <h3>Cours d'anglais</h3>
-            <p>Un cours qui vous permet de vous concentrer pleinement sur l'anglais. Aucune connaissance préalable du français n'est nécessaire — idéal pour développer des compétences pratiques en Amérique du Nord.</p>
-            <a href="english-course.html" class="btn btn-cta">En savoir plus</a>
+            <h3>Anglais général</h3>
+            <p>Un cours complet qui développe l'anglais nécessaire pour la vie quotidienne, les études, les voyages et le travail.</p>
+            <div class="course-meta">
+              <span class="meta-pill">24 cours/semaine</span>
+              <span class="meta-pill">1 à 52 semaines</span>
+              <span class="meta-pill">Tous niveaux</span>
+            </div>
+            <a href="english-course.html#general-english" class="btn btn-outline btn-sm">En savoir plus</a>
           </div>
         </article>
 
-        <article class="course-card course-card--fr">
-          <div class="course-card-image">
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80" alt="Étudiants apprenant le français dans un café lumineux">
-          </div>
-          <div class="course-card-body">
-            <span class="course-card-tag">COURS DE FRANÇAIS</span>
-            <h3>Cours de français</h3>
-            <p>Une expérience d'études unique en Amérique du Nord, au cœur d'une culture francophone. Les grands débutants sont les bienvenus.</p>
-            <a href="french-course.html" class="btn btn-cta">En savoir plus</a>
+        <article class="mini-course-card mini-course-card--en">
+          <div class="mini-course-card-body">
+            <span class="course-card-tag">COURS D'ANGLAIS</span>
+            <h3>Anglais intensif</h3>
+            <p>Plus de cours que l'anglais général, pour développer intensivement les quatre compétences sur une période plus courte.</p>
+            <div class="course-meta">
+              <span class="meta-pill">30 cours/semaine</span>
+              <span class="meta-pill">1 à 52 semaines</span>
+              <span class="meta-pill">Tous niveaux</span>
+            </div>
+            <a href="english-course.html#intensive-english" class="btn btn-outline btn-sm">En savoir plus</a>
           </div>
         </article>
+
+        <article class="mini-course-card mini-course-card--exam">
+          <div class="mini-course-card-body">
+            <span class="course-card-tag course-card-tag--exam">PRÉPARATION AUX EXAMENS</span>
+            <h3>Préparation à l'IELTS</h3>
+            <p>Un cours de préparation à l'examen couvrant le format et les stratégies de réponse pour l'IELTS Listening, Reading, Writing et Speaking.</p>
+            <div class="course-meta">
+              <span class="meta-pill">30 cours/semaine</span>
+              <span class="meta-pill">Généralement 4 à 24 semaines</span>
+              <span class="meta-pill">Intermédiaire+</span>
+            </div>
+            <a href="english-course.html#ielts-detail" class="btn btn-outline btn-sm">En savoir plus</a>
+          </div>
+        </article>
+
+        <article class="mini-course-card mini-course-card--fr">
+          <div class="mini-course-card-body">
+            <span class="course-card-tag" style="color:var(--color-cta); background:var(--color-soft-bg-2);">COURS DE FRANÇAIS</span>
+            <h3>Français général</h3>
+            <p>Un cours complet qui développe le français nécessaire pour la vie quotidienne et pour vivre à Montréal.</p>
+            <div class="course-meta">
+              <span class="meta-pill">24 cours/semaine</span>
+              <span class="meta-pill">1 à 52 semaines</span>
+              <span class="meta-pill">Tous niveaux</span>
+            </div>
+            <a href="french-course.html#general-french" class="btn btn-outline btn-sm">En savoir plus</a>
+          </div>
+        </article>
+
+        <article class="mini-course-card mini-course-card--fr">
+          <div class="mini-course-card-body">
+            <span class="course-card-tag" style="color:var(--color-cta); background:var(--color-soft-bg-2);">COURS DE FRANÇAIS</span>
+            <h3>Français intensif</h3>
+            <p>Plus de cours que le français général, pour développer intensivement les quatre compétences sur une période plus courte.</p>
+            <div class="course-meta">
+              <span class="meta-pill">30 cours/semaine</span>
+              <span class="meta-pill">1 à 52 semaines</span>
+              <span class="meta-pill">Tous niveaux</span>
+            </div>
+            <a href="french-course.html#intensive-french" class="btn btn-outline btn-sm">En savoir plus</a>
+          </div>
+        </article>
+
+        <article class="mini-course-card mini-course-card--exam">
+          <div class="mini-course-card-body">
+            <span class="course-card-tag course-card-tag--exam">PRÉPARATION AUX EXAMENS</span>
+            <h3>Préparation au DELF/DALF</h3>
+            <p>Un cours de préparation aligné sur le format du DELF/DALF, couvrant la compréhension orale, la compréhension écrite, la production écrite et la production orale.</p>
+            <div class="course-meta">
+              <span class="meta-pill">30 cours/semaine</span>
+              <span class="meta-pill">Généralement 4 à 24 semaines</span>
+              <span class="meta-pill">A2 ou plus recommandé</span>
+            </div>
+            <a href="french-course.html#delf-dalf-detail" class="btn btn-outline btn-sm">En savoir plus</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="notice-box">
+        <strong>À noter</strong><br>
+        Les horaires de cours, le nombre de leçons, les dates de rentrée et la taille des classes peuvent être modifiés. Merci de confirmer les informations officielles avant de vous inscrire.
       </div>
     </div>
   </section>
@@ -123,6 +229,10 @@
           </div>
         </div>
       </div>
+
+      <div style="text-align:center; margin-top: 32px;">
+        <a href="life-in-montreal.html" class="btn btn-outline">En savoir plus sur la vie à Montréal</a>
+      </div>
     </div>
   </section>
 
@@ -132,7 +242,7 @@
       <div class="section-header">
         <span class="section-eyebrow">Pourquoi DASS</span>
         <h2>Pourquoi choisir DASS</h2>
-        <p>Nous accompagnons chaque étudiant japonais dans ses objectifs, du premier entretien-conseil jusqu'au retour au pays.</p>
+        <p>Nous accompagnons chaque étudiant dans ses objectifs, du premier entretien-conseil jusqu'au retour au pays.</p>
       </div>
 
       <div class="reason-grid">
@@ -148,8 +258,8 @@
         </div>
         <div class="reason-card">
           <div class="reason-icon">🏫</div>
-          <h3>Écoles et familles d'accueil de confiance</h3>
-          <p>Nous sélectionnons soigneusement des écoles de langues partenaires et des familles d'accueil sur place à Montréal.</p>
+          <h3>Organisation de l'hébergement</h3>
+          <p>Nous vous aidons à organiser un hébergement en famille d'accueil ou en résidence étudiante selon vos objectifs.</p>
         </div>
         <div class="reason-card">
           <div class="reason-icon">💬</div>
@@ -163,8 +273,8 @@
         </div>
         <div class="reason-card">
           <div class="reason-icon">📄</div>
-          <h3>Accompagnement visa et démarches</h3>
-          <p>Notre équipe vous guide dans la préparation et le dépôt de votre demande de visa étudiant.</p>
+          <h3>Accompagnement pour l'inscription</h3>
+          <p>Notre équipe vous guide dans la préparation et le dépôt de votre dossier d'inscription.</p>
         </div>
       </div>
     </div>
@@ -183,17 +293,17 @@
         <div class="step-card">
           <span class="step-number">1</span>
           <h3>Consultation gratuite</h3>
-          <p>Nous découvrons vos objectifs et vous conseillons entre le cours d'anglais et le cours de français.</p>
+          <p>Nous découvrons vos objectifs et vous conseillons le cours adapté.</p>
         </div>
         <div class="step-card">
           <span class="step-number">2</span>
-          <h3>Choix du cours et de l'école</h3>
-          <p>Nous vous présentons des écoles de langues locales, des options d'hébergement et des familles d'accueil adaptées.</p>
+          <h3>Choix du cours et de l'hébergement</h3>
+          <p>Nous vous présentons des options de cours et d'hébergement (famille d'accueil, résidence étudiante) adaptées à vos besoins.</p>
         </div>
         <div class="step-card">
           <span class="step-number">3</span>
-          <h3>Inscription et préparation du visa</h3>
-          <p>Nous vous accompagnons dans la préparation des documents et la demande de visa étudiant.</p>
+          <h3>Inscription et documents</h3>
+          <p>Nous vous accompagnons dans la préparation des documents et la finalisation de votre inscription.</p>
         </div>
         <div class="step-card">
           <span class="step-number">4</span>
@@ -206,10 +316,14 @@
           <p>Après votre arrivée à Montréal, notre équipe locale continue de vous soutenir au quotidien et dans vos études.</p>
         </div>
       </div>
+
+      <div style="text-align:center; margin-top: 32px;">
+        <a href="admissions.html" class="btn btn-outline">Voir les détails d'admission</a>
+      </div>
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- FAQ teaser -->
   <section id="faq">
     <div class="container">
       <div class="section-header">
@@ -223,21 +337,17 @@
           <p>Pour vous permettre de vous concentrer pleinement sur une langue, nos cours restent clairement séparés. Merci de choisir le cours correspondant à votre objectif actuel.</p>
         </details>
         <details class="faq-item">
-          <summary>Je suis grand débutant en français — le cours de français est-il fait pour moi ?</summary>
-          <p>Oui. De nombreux étudiants du cours de français commencent en grands débutants. Les classes sont réparties par niveau, vous pouvez donc rejoindre le cours en toute confiance.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Ai-je besoin de connaissances en français pour le cours d'anglais ?</summary>
-          <p>Pas du tout. Le cours d'anglais est conçu pour que vous puissiez vous concentrer entièrement sur l'anglais — aucune connaissance préalable du français n'est requise.</p>
+          <summary>Les tarifs affichés sont-ils officiels ?</summary>
+          <p>Les tarifs actuellement affichés sont des tarifs de référence établis pendant notre préparation à l'ouverture, basés sur les niveaux de prix habituels des écoles de langues de Montréal. Ce ne sont pas les tarifs officiels de DASS et ils peuvent changer — merci de les confirmer avant de vous inscrire.</p>
         </details>
         <details class="faq-item">
           <summary>Quelle est la durée minimale de séjour possible ?</summary>
-          <p>Les programmes vont du court terme (à partir de 2 semaines) au long terme (un an ou plus). Contactez-nous pour discuter de la durée qui vous convient.</p>
+          <p>Les programmes vont d'une semaine jusqu'au long terme (un an ou plus). Contactez-nous pour discuter de la durée qui vous convient.</p>
         </details>
-        <details class="faq-item">
-          <summary>Combien cela coûte-t-il ?</summary>
-          <p>Le coût varie selon le cours, la durée et le type d'hébergement (famille d'accueil, résidence étudiante, etc). Réservez une consultation gratuite et nous établirons un plan adapté à votre budget.</p>
-        </details>
+      </div>
+
+      <div style="text-align:center; margin-top: 32px;">
+        <a href="faq.html" class="btn btn-outline">Voir plus de questions</a>
       </div>
     </div>
   </section>
@@ -246,11 +356,11 @@
   <section>
     <div class="final-cta">
       <h2>Trouvez le cours qui vous convient grâce à une consultation gratuite</h2>
-      <p>Vous hésitez entre l'anglais et le français ? Contactez-nous — nos conseillers parlant japonais sont là pour vous aider.</p>
+      <p>Vous hésitez sur le choix du cours, les tarifs ou l'hébergement ? Contactez-nous — nos conseillers parlant japonais sont là pour vous aider.</p>
       <div class="hero-actions">
         <a href="contact.html" class="btn btn-cta">Consultation gratuite</a>
-        <a href="english-course.html" class="btn btn-outline">Voir le cours d'anglais</a>
-        <a href="french-course.html" class="btn btn-outline">Voir le cours de français</a>
+        <a href="quote.html" class="btn btn-outline">Devis rapide</a>
+        <a href="courses.html" class="btn btn-outline">Voir les cours</a>
       </div>
     </div>
   </section>
@@ -264,11 +374,23 @@
       <p>Choisissez l'anglais ou le français. Découvrez la ville bilingue et dynamique de Montréal.</p>
     </div>
     <div class="footer-col">
-      <h4>Plan du site</h4>
+      <h4>Cours</h4>
       <ul>
-        <li><a href="index.html">Accueil</a></li>
+        <li><a href="courses.html">Tous les cours</a></li>
         <li><a href="english-course.html">Cours d'anglais</a></li>
         <li><a href="french-course.html">Cours de français</a></li>
+        <li><a href="tuition-fees.html">Frais de scolarité</a></li>
+        <li><a href="accommodation.html">Hébergement</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>À propos</h4>
+      <ul>
+        <li><a href="about.html">À propos de DASS</a></li>
+        <li><a href="life-in-montreal.html">Vivre à Montréal</a></li>
+        <li><a href="japanese-support.html">Support en japonais</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="faq.html">FAQ</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="../privacy-policy.html">Politique de confidentialité</a></li>
       </ul>

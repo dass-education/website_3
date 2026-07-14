@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>簡易見積り | DASS Montréal Language School</title>
+<meta name="description" content="DASS Montréal Language Schoolの簡易見積りシミュレーター。コースや受講期間、滞在方法などを入力すると、参考料金による概算費用をその場で確認できます。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">DASS <span>Montréal</span><small>Language School</small></a>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <a href="index.html" class="active">日本語</a> | <a href="en/quote.html">English</a> | <a href="fr/quote.html">Français</a>
+      </div>
+      <a href="quote.html" class="btn btn-cta btn-sm">簡易見積り</a>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="main-nav" id="main-nav">
+    <div class="container">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown">
+          <div class="has-dropdown-row">
+            <a href="courses.html">コース</a>
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-label="コースメニューを開閉">▾</button>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-col">
+              <span class="dropdown-heading">英語コース</span>
+              <a href="english-course.html#general-english">一般英語</a>
+              <a href="english-course.html#intensive-english">集中英語</a>
+              <a href="english-course.html#ielts">IELTS対策</a>
+            </div>
+            <div class="dropdown-col">
+              <span class="dropdown-heading">フランス語コース</span>
+              <a href="french-course.html#general-french">一般フランス語</a>
+              <a href="french-course.html#intensive-french">集中フランス語</a>
+              <a href="french-course.html#delf-dalf">DELF・DALF対策</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="accommodation.html">滞在方法</a></li>
+        <li><a href="tuition-fees.html">料金</a></li>
+        <li><a href="about.html">DASSについて</a></li>
+        <li><a href="life-in-montreal.html">モントリオールでの生活</a></li>
+        <li><a href="japanese-support.html">日本語サポート</a></li>
+        <li><a href="admissions.html">入学案内</a></li>
+        <li><a href="faq.html">よくある質問</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1519178614-68673b201f36?auto=format&fit=crop&w=1920&q=80');">
+    <div class="container hero-inner">
+      <div class="hero-card">
+        <span class="hero-eyebrow">GET A QUOTE</span>
+        <h1>簡易見積り</h1>
+        <p class="hero-sub">コースや受講期間、滞在方法などを入力すると、入力にあわせて概算費用がその場で表示されます。表示される金額は参考料金による概算です。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="notice-box js-temp-notice" style="max-width:900px; margin: 0 auto 40px;">
+        <strong>参考料金について</strong><br>
+        <span class="js-temp-notice-text"></span>
+      </div>
+
+      <form class="quote-form" id="quote-form" novalidate>
+        <fieldset>
+          <legend>1. コースを選択</legend>
+          <div class="field">
+            <label>学習言語 <span class="required-mark">必須</span></label>
+            <div class="radio-group">
+              <label><input type="radio" name="quote-language" value="english" required>英語コース</label>
+              <label><input type="radio" name="quote-language" value="french" required>フランス語コース</label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="quote-course">コース <span class="required-mark">必須</span></label>
+            <select id="quote-course" name="quote-course" required aria-describedby="quote-course-error">
+              <option value="" disabled selected>学習言語を選択してください</option>
+            </select>
+            <p class="field-error" id="quote-course-error" role="alert" hidden></p>
+            <p class="field-hint">コースの詳細は<a href="courses.html" style="color:var(--color-accent);">コース一覧ページ</a>でご確認いただけます。</p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. 年齢・受講期間・開始予定日</legend>
+          <div class="field-row">
+            <div class="field">
+              <label for="quote-age">年齢 <span class="required-mark">必須</span></label>
+              <input type="number" id="quote-age" name="quote-age" min="1" max="99" step="1" required aria-describedby="quote-age-error">
+              <p class="field-error" id="quote-age-error" role="alert" hidden></p>
+            </div>
+            <div class="field">
+              <label for="quote-weeks">受講期間（週数） <span class="required-mark">必須</span></label>
+              <input type="number" id="quote-weeks" name="quote-weeks" placeholder="例：12" min="1" max="52" step="1" required aria-describedby="quote-weeks-error">
+              <p class="field-error" id="quote-weeks-error" role="alert" hidden></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="quote-start">開始予定日 <span class="required-mark">必須</span></label>
+            <input type="date" id="quote-start" name="quote-start" required aria-describedby="quote-start-error">
+            <p class="field-error" id="quote-start-error" role="alert" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. 滞在方法</legend>
+          <div class="field">
+            <label for="quote-stay">滞在方法 <span class="required-mark">必須</span></label>
+            <select id="quote-stay" name="quote-stay" required aria-describedby="quote-stay-error">
+              <option value="" disabled selected>滞在方法を選択してください</option>
+              <option value="homestay">ホームステイ</option>
+              <option value="residence">学生寮・シェアレジデンス</option>
+              <option value="self">自己手配（滞在先の手配なし）</option>
+              <option value="undecided">まだ決めていない</option>
+            </select>
+            <p class="field-error" id="quote-stay-error" role="alert" hidden></p>
+          </div>
+          <div class="field" id="quote-room-field" hidden>
+            <label for="quote-room">部屋タイプ <span class="required-mark">必須</span></label>
+            <select id="quote-room" name="quote-room" aria-describedby="quote-room-error"></select>
+            <p class="field-error" id="quote-room-error" role="alert" hidden></p>
+          </div>
+          <div class="field" id="quote-meal-field" hidden>
+            <label for="quote-meal">食事プラン</label>
+            <select id="quote-meal" name="quote-meal"></select>
+          </div>
+          <div class="field" id="quote-stay-weeks-field" hidden>
+            <label for="quote-stay-weeks">滞在期間（週数） <span class="required-mark">必須</span></label>
+            <input type="number" id="quote-stay-weeks" name="quote-stay-weeks" min="1" max="52" step="1" aria-describedby="quote-stay-weeks-error">
+            <p class="field-error" id="quote-stay-weeks-error" role="alert" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. 追加サービス</legend>
+          <div class="field">
+            <label for="quote-airport">空港送迎</label>
+            <select id="quote-airport" name="quote-airport">
+              <option value="none">利用しない</option>
+              <option value="oneWay">片道</option>
+              <option value="roundTrip">往復</option>
+            </select>
+          </div>
+          <div class="field">
+            <label><input type="checkbox" id="quote-insurance" name="quote-insurance"> 海外保険を利用する</label>
+          </div>
+          <div class="field" id="quote-minor-section" hidden>
+            <label>未成年者サポート</label>
+            <div class="radio-group">
+              <label><input type="radio" name="quote-minor-support" value="no" checked>利用しない</label>
+              <label><input type="radio" name="quote-minor-support" value="yes">利用する</label>
+            </div>
+            <p class="field-hint" id="quote-minor-notice" hidden>未成年者の受入条件、滞在先、空港送迎、必要書類は個別確認が必要です。</p>
+          </div>
+        </fieldset>
+
+        <div class="quote-submit-row">
+          <button type="button" class="btn btn-outline" id="quote-reset">入力をリセット</button>
+          <button type="button" class="btn btn-outline" id="quote-print">印刷・PDF保存</button>
+          <button type="button" class="btn btn-cta" id="quote-to-contact">この内容でお問い合わせフォームへ進む</button>
+        </div>
+      </form>
+
+      <section class="quote-result" id="quote-result-section" aria-live="polite">
+        <p id="quote-result-empty">必要項目を入力すると、自動的に見積りが表示されます。</p>
+        <div id="quote-result-content" hidden>
+          <h2>お見積り結果</h2>
+          <div class="notice-box js-temp-notice" id="quote-disclaimer" hidden></div>
+          <div id="quote-cost-breakdown" class="quote-result-list"></div>
+          <div class="quote-result-row quote-result-total" id="quote-total-row">
+            <span class="quote-result-label" id="quote-total-label"></span>
+            <span class="quote-result-value" id="quote-total-value"></span>
+          </div>
+          <div class="notice-box" id="quote-exam-message" hidden></div>
+        </div>
+      </section>
+
+      <div class="notice-box">
+        <strong>参考料金について</strong><br>
+        本ページで表示されるコース名・料金項目は、<a href="tuition-fees.html" style="color: var(--color-accent); font-weight:700;">料金ページ</a>に掲載の開校準備中の参考料金に基づく想定です。DASSの正式料金ではなく、今後変更される場合があります。正式な金額は無料相談にてご確認ください。
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="no-print">
+    <div class="final-cta">
+      <h2>正式なお見積りは、無料相談でお気軽に</h2>
+      <p>コースや滞在方法の組み合わせについて、日本人カウンセラーが日本語で丁寧にご案内します。</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-cta">無料相談・お問い合わせ</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand">DASS Montréal Language School</div>
+      <p>英語またはフランス語を目的に合わせて選び、二言語都市モントリオールで学ぶ学校。</p>
+    </div>
+    <div class="footer-col">
+      <h4>コース</h4>
+      <ul>
+        <li><a href="courses.html">コース一覧</a></li>
+        <li><a href="english-course.html">英語コース</a></li>
+        <li><a href="french-course.html">フランス語コース</a></li>
+        <li><a href="tuition-fees.html">料金</a></li>
+        <li><a href="accommodation.html">滞在方法</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>サイト情報</h4>
+      <ul>
+        <li><a href="about.html">DASSについて</a></li>
+        <li><a href="life-in-montreal.html">モントリオールでの生活</a></li>
+        <li><a href="japanese-support.html">日本語サポート</a></li>
+        <li><a href="admissions.html">入学案内</a></li>
+        <li><a href="faq.html">よくある質問</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+        <li><a href="privacy-policy.html">プライバシーポリシー</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Language</h4>
+      <ul>
+        <li><a href="index.html">日本語</a></li>
+        <li><a href="en/quote.html">English</a></li>
+        <li><a href="fr/quote.html">Français</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 DASS Montréal Language School. All rights reserved.</span>
+  </div>
+</footer>
+
+<script src="js/pricing-data.js"></script>
+<script src="js/pricing-engine.js"></script>
+<script src="js/pricing-i18n.js"></script>
+<script src="js/quote.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
