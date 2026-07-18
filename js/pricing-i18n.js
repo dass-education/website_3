@@ -54,33 +54,28 @@ var PricingI18n = {
     },
     units: { weeks: "週間", age: "歳", lessonsPerWeek: "週{n}レッスン" },
     weekRanges: { short: "1〜3週間", standard: "4〜12週間", medium: "13〜24週間", long: "25〜52週間" },
-    examWeekRanges: { short: "1〜3週間", standard: "4〜12週間", medium: "13〜24週間", long: "25週間以上" },
-    individualQuoteLabel: "個別確認",
     pairJoiner: "・",
 
     tuitionTable: {
       durationHeader: "受講期間",
-      lessonsHeader: "レッスン数",
-      weeklyRateHeader: "週料金（CAD）",
+      weeklyRateHeader: "料金／週",
       generalIntensiveTitle: "{course}（{lessons}）",
-      examTitle: "{course}（{lessons}）",
-      examNote: "IELTS対策・DELF・DALF対策は原則4〜24週間を想定した参考料金です。1〜3週間・25週間以上は個別にご確認ください。",
-      otherFeesTitle: "その他の初期参考料金",
-      otherFeesHeaders: ["項目", "参考料金（CAD）", "計算方法"],
-      perWeekFormat: "週{n}",
-      capFormat: "上限CAD{n}",
+      otherFeesTitle: "その他の料金",
+      otherFeesHeaders: ["項目", "料金"],
+      perWeekFormat: "週CAD {n}",
+      capFormat: "最大{n}",
       otherFeesRows: {
-        registrationFee: { label: "入学金", calc: "1回" },
-        materialsFeeBase: { label: "教材費（1〜4週間）", calc: "固定" },
-        materialsFeePerWeek: { label: "教材費（5週間以上）", calc: "{cap}" },
-        placementFee: { label: "滞在先手配料", calc: "1回（ホームステイ・学生寮のみ）" },
-        airportOneWay: { label: "空港送迎（片道）", calc: "1回" },
-        airportRoundTrip: { label: "空港送迎（往復）", calc: "1回" },
-        insurance: { label: "海外保険", calc: "滞在週数に応じる" },
-        minorSupport: { label: "未成年者サポート基本料", calc: "1回" }
+        registrationFee: { label: "入学金" },
+        materialsFeeBase: { label: "教材費・1〜4週間" },
+        materialsFeePerWeek: { label: "教材費・5週間以上" },
+        placementFee: { label: "滞在先手配料" },
+        airportOneWay: { label: "空港送迎・片道" },
+        airportRoundTrip: { label: "空港送迎・往復" },
+        insurance: { label: "海外保険" },
+        minorSupport: { label: "未成年者サポート基本料" }
       },
       homestayTitle: "ホームステイ",
-      homestayHeaders: ["部屋・食事", "週料金（CAD）"],
+      homestayHeaders: ["部屋・食事", "料金／週"],
       homestayRows: {
         privateNoMeals: "個室・食事なし",
         privateBreakfast: "個室・朝食付き",
@@ -89,7 +84,7 @@ var PricingI18n = {
         sharedTwoMeals: "相部屋・1日2食"
       },
       residenceTitle: "学生寮・シェアレジデンス",
-      residenceHeaders: ["部屋タイプ", "週料金（CAD）"],
+      residenceHeaders: ["部屋タイプ", "料金／週"],
       residenceRows: {
         sharedRoom: "相部屋",
         privateSharedBathroom: "個室・共用浴室",
@@ -115,10 +110,7 @@ var PricingI18n = {
       stayWeeks: "滞在期間を1〜52の範囲で入力してください。"
     },
 
-    examCustomQuoteMessage: "この受講期間の試験対策コースは個別見積りとなります。お問い合わせください。",
     minorSupportNotice: "未成年者の受入条件、滞在先、空港送迎、必要書類は個別確認が必要です。",
-    temporaryDataNotice: "掲載料金は、2026年のモントリオールの語学学校の料金水準を参考に設定した、DASS開校準備中の参考料金です。正式料金ではありません。",
-    quoteDisclaimer: "この見積りは参考料金による概算です。正式なお申込み金額ではありません。",
 
     resultHeading: "お見積り結果",
     inputSummaryHeading: "ご入力内容",
@@ -142,8 +134,7 @@ var PricingI18n = {
       airportTransferFee: "空港送迎",
       insuranceFee: "海外保険",
       minorSupportFee: "未成年者サポート",
-      grandTotal: "概算合計",
-      customQuote: "個別見積り"
+      grandTotal: "概算合計"
     },
     addonsNone: "なし",
     addonsSeparator: "、",

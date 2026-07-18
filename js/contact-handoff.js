@@ -37,9 +37,7 @@
     lines.push(i18n.labels.insurance + ": " + (summary.wantsInsurance ? i18n.yesNo.yes : i18n.yesNo.no));
     lines.push(i18n.labels.minorSupport + ": " + (summary.wantsMinorSupport ? i18n.yesNo.yes : i18n.yesNo.no));
 
-    var totalText = summary.isCustomQuote
-      ? rl.customQuote
-      : summary.currency + " " + PricingEngine.formatAmount(summary.grandTotal);
+    var totalText = summary.currency + " " + PricingEngine.formatAmount(summary.grandTotal);
     lines.push(rl.grandTotal + ": " + totalText);
 
     return lines;

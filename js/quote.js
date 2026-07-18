@@ -53,7 +53,6 @@
       contactBtn: document.getElementById("quote-to-contact"),
       resultEmpty: document.getElementById("quote-result-empty"),
       resultContent: document.getElementById("quote-result-content"),
-      examMessage: document.getElementById("quote-exam-message"),
       breakdown: document.getElementById("quote-cost-breakdown"),
       totalRow: document.getElementById("quote-total-row"),
       totalLabel: document.getElementById("quote-total-label"),
@@ -346,7 +345,7 @@
       });
 
       var costRows = [
-        [rl.tuition, quote.isCustomQuote ? i18n.resultLabels.customQuote : currency(quote.tuitionTotal)],
+        [rl.tuition, currency(quote.tuitionTotal)],
         [rl.registrationFee, currency(quote.registrationFee)],
         [rl.materialsFee, currency(quote.materialsFee)],
         [rl.placementFee, currency(quote.placementFee)],
@@ -359,11 +358,8 @@
         el.breakdown.appendChild(buildRow(pair[0], pair[1]));
       });
 
-      el.totalLabel.textContent = quote.isCustomQuote ? rl.customQuote : rl.grandTotal;
-      el.totalValue.textContent = quote.isCustomQuote ? "—" : currency(quote.grandTotal);
-
-      el.examMessage.hidden = !quote.isCustomQuote;
-      if (quote.isCustomQuote) el.examMessage.textContent = i18n.examCustomQuoteMessage;
+      el.totalLabel.textContent = rl.grandTotal;
+      el.totalValue.textContent = currency(quote.grandTotal);
 
       el.resultEmpty.hidden = true;
       el.resultContent.hidden = false;
@@ -414,8 +410,7 @@
         transferOption: v.transferOption,
         wantsInsurance: v.wantsInsurance,
         wantsMinorSupport: v.wantsMinorSupport,
-        isCustomQuote: quote.isCustomQuote,
-        grandTotal: quote.isCustomQuote ? null : quote.grandTotal,
+        grandTotal: quote.grandTotal,
         currency: pricingData.currency
       };
     }
@@ -494,22 +489,6 @@
       }
       window.location.href = "contact.html";
     });
-
-    // ---- Reference-pricing notices (hidden automatically once real prices are set) ----
-    document.querySelectorAll(".js-temp-notice").forEach(function (node) {
-      if (!pricingData.isTemporaryData) {
-        node.hidden = true;
-        return;
-      }
-      node.hidden = false;
-      var textTarget = node.classList.contains("js-temp-notice") ? node.querySelector(".js-temp-notice-text") : node;
-      if (textTarget) textTarget.textContent = i18n.temporaryDataNotice;
-    });
-    var disclaimer = document.getElementById("quote-disclaimer");
-    if (disclaimer) {
-      disclaimer.hidden = !pricingData.isTemporaryData;
-      disclaimer.textContent = i18n.quoteDisclaimer;
-    }
 
     // ---- Initial state ----
     populateCourseOptions();

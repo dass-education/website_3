@@ -20,7 +20,8 @@ var PricingEngine = (function (data) {
     return byLanguage[courseType] || null;
   }
 
-  // 1–3 / 4–12 / 13–24 / 25–52 weeks tiers used by General & Intensive courses.
+  // 1–3 / 4–12 / 13–24 / 25–52 weeks tiers used by all courses (General,
+  // Intensive, and exam prep alike — exam prep follows Intensive pricing).
   function getGeneralIntensiveTier(weeks) {
     if (weeks >= 1 && weeks <= 3) return "short";
     if (weeks >= 4 && weeks <= 12) return "standard";
@@ -29,43 +30,13 @@ var PricingEngine = (function (data) {
     return null;
   }
 
-  // Exam prep (IELTS / DELF-DALF) only has automatic rates for 4–24 weeks.
-  function getExamPrepTier(weeks) {
-    if (weeks >= 4 && weeks <= 12) return "standard";
-    if (weeks >= 13 && weeks <= 24) return "medium";
-    return null;
-  }
-
   // Returns:
   //   { valid:false }                                     — weeks out of 1–52
-  //   { valid:true, isCustomQuote:true, lessonCount, lessonMinutes }
-  //   { valid:true, isCustomQuote:false, lessonCount, lessonMinutes,
-  //     weeklyRate, totalTuition }
+  //   { valid:true, lessonCount, lessonMinutes, weeklyRate, totalTuition }
   function calculateTuition(studyLanguage, courseType, weeks) {
     var courseData = getCourseData(studyLanguage, courseType);
     if (!courseData || !(weeks >= 1 && weeks <= 52)) {
       return { valid: false };
-    }
-
-    if (courseType === "exam") {
-      var examTier = getExamPrepTier(weeks);
-      if (!examTier) {
-        return {
-          valid: true,
-          isCustomQuote: true,
-          lessonCount: courseData.lessonCount,
-          lessonMinutes: courseData.lessonMinutes
-        };
-      }
-      var examRate = courseData.rates[examTier];
-      return {
-        valid: true,
-        isCustomQuote: false,
-        lessonCount: courseData.lessonCount,
-        lessonMinutes: courseData.lessonMinutes,
-        weeklyRate: examRate,
-        totalTuition: examRate * weeks
-      };
     }
 
     var tier = getGeneralIntensiveTier(weeks);
@@ -73,7 +44,6 @@ var PricingEngine = (function (data) {
     var rate = courseData.rates[tier];
     return {
       valid: true,
-      isCustomQuote: false,
       lessonCount: courseData.lessonCount,
       lessonMinutes: courseData.lessonMinutes,
       weeklyRate: rate,
@@ -138,7 +108,6 @@ var PricingEngine = (function (data) {
 
     var result = {
       valid: true,
-      isCustomQuote: tuition.isCustomQuote,
       lessonCount: tuition.lessonCount,
       lessonMinutes: tuition.lessonMinutes,
       tuitionWeeklyRate: tuition.weeklyRate || 0,
@@ -152,19 +121,15 @@ var PricingEngine = (function (data) {
       minorSupportFee: minorSupportFee
     };
 
-    if (tuition.isCustomQuote) {
-      result.grandTotal = null;
-    } else {
-      result.grandTotal =
-        result.tuitionTotal +
-        result.registrationFee +
-        result.materialsFee +
-        result.placementFee +
-        result.accommodationCost +
-        result.airportTransferFee +
-        result.insuranceFee +
-        result.minorSupportFee;
-    }
+    result.grandTotal =
+      result.tuitionTotal +
+      result.registrationFee +
+      result.materialsFee +
+      result.placementFee +
+      result.accommodationCost +
+      result.airportTransferFee +
+      result.insuranceFee +
+      result.minorSupportFee;
 
     return result;
   }
@@ -177,7 +142,6 @@ var PricingEngine = (function (data) {
 
   return {
     getGeneralIntensiveTier: getGeneralIntensiveTier,
-    getExamPrepTier: getExamPrepTier,
     calculateTuition: calculateTuition,
     calculateMaterialsFee: calculateMaterialsFee,
     calculateAccommodation: calculateAccommodation,

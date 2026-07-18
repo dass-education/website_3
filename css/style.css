@@ -348,6 +348,18 @@ section { padding: 80px 0; }
   gap: 14px;
 }
 
+/* Centered CTA button pairs/groups outside the hero (e.g. "quick estimate"
+   next to "talk to a counselor"). Flex + gap keeps consistent spacing
+   between buttons instead of relying on collapsed whitespace, and wraps
+   to a comfortable vertical gap when buttons stack on narrow screens. */
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
 .page-hero {
   position: relative;
   min-height: 380px;
@@ -665,6 +677,28 @@ section { padding: 80px 0; }
 .price-table tbody tr:last-child td { border-bottom: none; }
 .price-table-title { font-weight: 700; margin: 36px 0 4px; font-size: 1.1rem; }
 .price-table-title:first-child { margin-top: 0; }
+
+/* Compact 2-column price tables (course fee tables, other fees table,
+   accommodation-related fees, homestay/residence tables). Unlike the
+   general .price-table-wrapper, these never need to scroll — they're
+   capped to a comfortable reading width on desktop and shrink to fit the
+   viewport on mobile instead of overflowing it. Cell text wraps rather
+   than truncating, so longer rows (e.g. the materials-fee cap) stay
+   fully readable instead of being clipped with an ellipsis. */
+.price-table-wrapper--compact {
+  overflow-x: visible;
+  max-width: 600px;
+  margin: 24px auto;
+}
+.compact-price-table {
+  width: 100%;
+  min-width: 0;
+}
+.compact-price-table th,
+.compact-price-table td {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
 
 /* ---- Notice / disclaimer box -------------------------------------------------------- */
 .notice-box {
@@ -1230,4 +1264,15 @@ section { padding: 80px 0; }
   .footer-inner { grid-template-columns: 1fr; }
   .highlight-banner { flex-direction: column; text-align: center; padding: 26px; }
   .track-block-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+  .price-table-wrapper--compact { max-width: 100%; }
+  .compact-price-table th,
+  .compact-price-table td { padding: 12px 10px; font-size: 0.9rem; }
+}
+
+/* Extra headroom on very narrow phones so the compact price tables never
+   need to scroll, without shrinking type to the point of illegibility. */
+@media (max-width: 360px) {
+  .compact-price-table th,
+  .compact-price-table td { padding: 10px 8px; font-size: 0.82rem; }
 }

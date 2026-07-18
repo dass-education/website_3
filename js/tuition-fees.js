@@ -9,7 +9,11 @@
 (function () {
   "use strict";
 
-  function buildTable(headers, rows, numericCols) {
+  // `compact`: simple 2-column tables (course fees, other fees) render with
+  // no horizontal scroll — capped width on desktop, fits the phone screen
+  // on mobile. Wider comparison tables (homestay, residence) keep the
+  // scrollable wrapper since they carry more columns of information.
+  function buildTable(headers, rows, numericCols, compact) {
     numericCols = numericCols || [];
     var thead = "<tr>" + headers.map(function (h, i) {
       return "<th" + (numericCols.indexOf(i) !== -1 ? ' class="num"' : "") + ">" + h + "</th>";
@@ -19,7 +23,9 @@
         return "<td" + (numericCols.indexOf(i) !== -1 ? ' class="num"' : "") + ">" + cell + "</td>";
       }).join("") + "</tr>";
     }).join("");
-    return '<div class="price-table-wrapper"><table class="price-table"><thead>' + thead +
+    var wrapperClass = compact ? "price-table-wrapper price-table-wrapper--compact" : "price-table-wrapper";
+    var tableClass = compact ? "price-table compact-price-table" : "price-table";
+    return '<div class="' + wrapperClass + '"><table class="' + tableClass + '"><thead>' + thead +
       "</thead><tbody>" + tbody + "</tbody></table></div>";
   }
 
@@ -29,49 +35,32 @@
     });
   }
 
-  function renderGeneralOrIntensiveTable(containerId, courseType, i18n) {
+  function currency(amount) {
+    return pricingData.currency + " " + PricingEngine.formatAmount(amount);
+  }
+
+  // Renders the weekly-rate table shared by General, Intensive, and exam-prep
+  // courses. Exam prep (courseType "exam") follows the English track's IELTS
+  // entry for lesson count/rates — French DELF/DALF uses identical rates
+  // (see js/pricing-data.js), so one table serves both languages either way.
+  function renderCourseTable(containerId, courseType, i18n) {
     var container = document.getElementById(containerId);
     if (!container) return;
 
     var t = i18n.tuitionTable;
-    var englishData = pricingData.tuition.english[courseType];
+    var englishData = courseType === "exam" ? pricingData.tuition.english.ielts : pricingData.tuition.english[courseType];
     var courseTitle = i18n.courseNames.english[courseType] + i18n.pairJoiner + i18n.courseNames.french[courseType];
     var lessonsLabel = fillTemplate(i18n.units.lessonsPerWeek, { n: englishData.lessonCount });
     var title = fillTemplate(t.generalIntensiveTitle, { course: courseTitle, lessons: lessonsLabel });
 
     var tiers = ["short", "standard", "medium", "long"];
     var rows = tiers.map(function (tier) {
-      return [i18n.weekRanges[tier], lessonsLabel, PricingEngine.formatAmount(englishData.rates[tier])];
+      return [i18n.weekRanges[tier], currency(englishData.rates[tier])];
     });
 
     container.innerHTML =
       '<p class="price-table-title">' + title + "</p>" +
-      buildTable([t.durationHeader, t.lessonsHeader, t.weeklyRateHeader], rows, [2]);
-  }
-
-  function renderExamTable(containerId, noteId, i18n) {
-    var container = document.getElementById(containerId);
-    if (!container) return;
-
-    var t = i18n.tuitionTable;
-    var englishData = pricingData.tuition.english.ielts;
-    var courseTitle = i18n.courseNames.english.exam + i18n.pairJoiner + i18n.courseNames.french.exam;
-    var lessonsLabel = fillTemplate(i18n.units.lessonsPerWeek, { n: englishData.lessonCount });
-    var title = fillTemplate(t.examTitle, { course: courseTitle, lessons: lessonsLabel });
-
-    var rows = [
-      [i18n.examWeekRanges.short, lessonsLabel, i18n.individualQuoteLabel],
-      [i18n.examWeekRanges.standard, lessonsLabel, PricingEngine.formatAmount(englishData.rates.standard)],
-      [i18n.examWeekRanges.medium, lessonsLabel, PricingEngine.formatAmount(englishData.rates.medium)],
-      [i18n.examWeekRanges.long, lessonsLabel, i18n.individualQuoteLabel]
-    ];
-
-    container.innerHTML =
-      '<p class="price-table-title">' + title + "</p>" +
-      buildTable([t.durationHeader, t.lessonsHeader, t.weeklyRateHeader], rows, [2]);
-
-    var note = document.getElementById(noteId);
-    if (note) note.textContent = t.examNote;
+      buildTable([t.durationHeader, t.weeklyRateHeader], rows, [1], true);
   }
 
   function renderOtherFeesTable(containerId, i18n) {
@@ -79,27 +68,27 @@
     if (!container) return;
 
     var t = i18n.tuitionTable;
-    var perWeek = function (n) { return fillTemplate(t.perWeekFormat, { n: n }); };
     var rows = t.otherFeesRows;
+    var perWeek = function (n) { return fillTemplate(t.perWeekFormat, { n: PricingEngine.formatAmount(n) }); };
+    var cap = function (n) { return fillTemplate(t.capFormat, { n: currency(n) }); };
 
     var data = [
-      [rows.registrationFee.label, PricingEngine.formatAmount(pricingData.registrationFee), rows.registrationFee.calc],
-      [rows.materialsFeeBase.label, PricingEngine.formatAmount(pricingData.materialsFee.firstFourWeeks), rows.materialsFeeBase.calc],
+      [rows.registrationFee.label, currency(pricingData.registrationFee)],
+      [rows.materialsFeeBase.label, currency(pricingData.materialsFee.firstFourWeeks)],
       [
         rows.materialsFeePerWeek.label,
-        perWeek(PricingEngine.formatAmount(pricingData.materialsFee.weeklyFromWeekFive)),
-        fillTemplate(rows.materialsFeePerWeek.calc, { cap: fillTemplate(t.capFormat, { n: PricingEngine.formatAmount(pricingData.materialsFee.maximum) }) })
+        perWeek(pricingData.materialsFee.weeklyFromWeekFive) + "（" + cap(pricingData.materialsFee.maximum) + "）"
       ],
-      [rows.placementFee.label, PricingEngine.formatAmount(pricingData.accommodationPlacementFee), rows.placementFee.calc],
-      [rows.airportOneWay.label, PricingEngine.formatAmount(pricingData.airportTransfer.oneWay), rows.airportOneWay.calc],
-      [rows.airportRoundTrip.label, PricingEngine.formatAmount(pricingData.airportTransfer.roundTrip), rows.airportRoundTrip.calc],
-      [rows.insurance.label, perWeek(PricingEngine.formatAmount(pricingData.insurance.weekly)), rows.insurance.calc],
-      [rows.minorSupport.label, PricingEngine.formatAmount(pricingData.minorSupport.fixed), rows.minorSupport.calc]
+      [rows.placementFee.label, currency(pricingData.accommodationPlacementFee)],
+      [rows.airportOneWay.label, currency(pricingData.airportTransfer.oneWay)],
+      [rows.airportRoundTrip.label, currency(pricingData.airportTransfer.roundTrip)],
+      [rows.insurance.label, perWeek(pricingData.insurance.weekly)],
+      [rows.minorSupport.label, currency(pricingData.minorSupport.fixed)]
     ];
 
     container.innerHTML =
       '<p class="price-table-title">' + t.otherFeesTitle + "</p>" +
-      buildTable(t.otherFeesHeaders, data, [1]);
+      buildTable(t.otherFeesHeaders, data, [1], true);
   }
 
   function renderHomestayTable(containerId, i18n) {
@@ -107,11 +96,11 @@
     if (!container) return;
     var t = i18n.tuitionTable;
     var rows = Object.keys(pricingData.homestay).map(function (key) {
-      return [t.homestayRows[key], PricingEngine.formatAmount(pricingData.homestay[key])];
+      return [t.homestayRows[key], currency(pricingData.homestay[key])];
     });
     container.innerHTML =
       '<p class="price-table-title">' + t.homestayTitle + "</p>" +
-      buildTable(t.homestayHeaders, rows, [1]);
+      buildTable(t.homestayHeaders, rows, [1], true);
   }
 
   function renderResidenceTable(containerId, i18n) {
@@ -119,24 +108,11 @@
     if (!container) return;
     var t = i18n.tuitionTable;
     var rows = Object.keys(pricingData.residence).map(function (key) {
-      return [t.residenceRows[key], PricingEngine.formatAmount(pricingData.residence[key])];
+      return [t.residenceRows[key], currency(pricingData.residence[key])];
     });
     container.innerHTML =
       '<p class="price-table-title">' + t.residenceTitle + "</p>" +
-      buildTable(t.residenceHeaders, rows, [1]);
-  }
-
-  function applyTemporaryDataNotices(i18n) {
-    var nodes = document.querySelectorAll(".js-temp-notice");
-    nodes.forEach(function (node) {
-      if (!pricingData.isTemporaryData) {
-        node.hidden = true;
-        return;
-      }
-      node.hidden = false;
-      var textTarget = node.classList.contains("js-temp-notice") ? node.querySelector(".js-temp-notice-text") : node;
-      if (textTarget) textTarget.textContent = i18n.temporaryDataNotice;
-    });
+      buildTable(t.residenceHeaders, rows, [1], true);
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -146,10 +122,9 @@
     var lang = document.documentElement.lang || "ja";
     var i18n = PricingI18n[lang] || PricingI18n.ja;
 
-    applyTemporaryDataNotices(i18n);
-    renderGeneralOrIntensiveTable("general-table-container", "general", i18n);
-    renderGeneralOrIntensiveTable("intensive-table-container", "intensive", i18n);
-    renderExamTable("exam-table-container", "exam-table-note", i18n);
+    renderCourseTable("general-table-container", "general", i18n);
+    renderCourseTable("intensive-table-container", "intensive", i18n);
+    renderCourseTable("exam-table-container", "exam", i18n);
     renderOtherFeesTable("other-fees-table-container", i18n);
     renderHomestayTable("homestay-table-container", i18n);
     renderResidenceTable("residence-table-container", i18n);

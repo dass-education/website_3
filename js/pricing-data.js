@@ -5,13 +5,16 @@
    Update numbers here only — never hard-code amounts in HTML or elsewhere.
    ========================================================================== */
 
+// Shared rate tables so exam-prep courses can reference (not duplicate)
+// their language's Intensive pricing, per current business rules:
+// exam-prep lesson count matches General (24/week); exam-prep pricing
+// matches Intensive (same weekly rates, same 1–52 week tiers).
+var englishIntensiveRates = { short: 455, standard: 445, medium: 435, long: 425 };
+var frenchIntensiveRates = { short: 455, standard: 445, medium: 435, long: 425 };
+
 var pricingData = {
   currency: "CAD",
   effectiveDate: "2026-07",
-
-  // While true, every page that includes this file shows a "reference
-  // pricing, not official" notice. Flip to false once real prices are set.
-  isTemporaryData: true,
 
   tuition: {
     english: {
@@ -23,14 +26,12 @@ var pricingData = {
       intensive: {
         lessonCount: 30,
         lessonMinutes: 50,
-        rates: { short: 455, standard: 445, medium: 435, long: 425 }
+        rates: englishIntensiveRates
       },
       ielts: {
-        lessonCount: 30,
+        lessonCount: 24,
         lessonMinutes: 50,
-        minimumWeeks: 4,
-        maximumWeeks: 24,
-        rates: { standard: 465, medium: 455 }
+        rates: englishIntensiveRates
       }
     },
 
@@ -43,14 +44,12 @@ var pricingData = {
       intensive: {
         lessonCount: 30,
         lessonMinutes: 50,
-        rates: { short: 455, standard: 445, medium: 435, long: 425 }
+        rates: frenchIntensiveRates
       },
       delfDalf: {
-        lessonCount: 30,
+        lessonCount: 24,
         lessonMinutes: 50,
-        minimumWeeks: 4,
-        maximumWeeks: 24,
-        rates: { standard: 465, medium: 455 }
+        rates: frenchIntensiveRates
       }
     }
   },
