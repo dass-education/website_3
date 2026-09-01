@@ -486,6 +486,7 @@ section { padding: 80px 0; }
 }
 .mini-course-card--fr .meta-pill { background: var(--color-soft-bg-2); }
 .mini-course-card--exam .meta-pill { background: var(--color-soft-bg-2); }
+.mini-course-card--exam-en .meta-pill { background: var(--color-soft-bg); }
 
 .track-block { margin-bottom: 64px; }
 .track-block:last-child { margin-bottom: 0; }
