@@ -11,7 +11,7 @@ var PricingI18n = {
   ja: {
     courseNames: {
       english: { general: "一般英語", intensive: "集中英語", exam: "IELTS対策" },
-      french: { general: "一般フランス語", intensive: "集中フランス語", exam: "DELF・DALF対策" }
+      french: { general: "一般フランス語", intensive: "集中フランス語", exam: "TCF・TEF対策" }
     },
     studyLanguageOptions: { english: "英語コース", french: "フランス語コース" },
     stayMethodOptions: {
@@ -21,16 +21,10 @@ var PricingI18n = {
       undecided: "まだ決めていない"
     },
     roomTypeOptions: {
-      homestay: { private: "個室", shared: "相部屋" },
-      residence: {
-        sharedRoom: "相部屋",
-        privateSharedBathroom: "個室・共用浴室",
-        privateBathroom: "個室・専用浴室"
-      }
+      homestay: { private: "個室" },
+      residence: { private: "個室" }
     },
     mealPlanOptions: {
-      none: "食事なし",
-      breakfast: "朝食付き",
       twoMeals: "1日2食",
       threeMeals: "1日3食"
     },
@@ -52,21 +46,22 @@ var PricingI18n = {
       insurance: "海外保険",
       minorSupport: "未成年者サポート"
     },
-    units: { weeks: "週間", age: "歳", lessonsPerWeek: "週{n}レッスン" },
-    weekRanges: { short: "1〜3週間", standard: "4〜12週間", medium: "13〜24週間", long: "25〜52週間" },
+    units: { weeks: "週間", age: "歳", weeklyHours: "週{n}時間" },
+    weekRanges: { short: "2〜4週間", standard: "5〜12週間", medium: "13〜24週間", long: "25〜52週間" },
+    examWeekRanges: { standard: "8〜12週間", medium: "13〜24週間", long: "25〜52週間" },
     pairJoiner: "・",
 
     tuitionTable: {
       durationHeader: "受講期間",
       weeklyRateHeader: "料金／週",
-      generalIntensiveTitle: "{course}（{lessons}）",
+      generalIntensiveTitle: "{course}（{hours}）",
       otherFeesTitle: "その他の料金",
       otherFeesHeaders: ["項目", "料金"],
       perWeekFormat: "週CAD {n}",
       capFormat: "最大{n}",
       otherFeesRows: {
         registrationFee: { label: "入学金" },
-        materialsFeeBase: { label: "教材費・1〜4週間" },
+        materialsFeeBase: { label: "教材費・2〜4週間" },
         materialsFeePerWeek: { label: "教材費・5週間以上" },
         placementFee: { label: "滞在先手配料" },
         airportOneWay: { label: "空港送迎・片道" },
@@ -77,19 +72,12 @@ var PricingI18n = {
       homestayTitle: "ホームステイ",
       homestayHeaders: ["部屋・食事", "料金／週"],
       homestayRows: {
-        privateNoMeals: "個室・食事なし",
-        privateBreakfast: "個室・朝食付き",
-        privateTwoMeals: "個室・1日2食",
-        privateThreeMeals: "個室・1日3食",
-        sharedTwoMeals: "相部屋・1日2食"
+        privateTwoMeals: "個室・2食",
+        privateThreeMeals: "個室・3食"
       },
       residenceTitle: "学生寮・シェアレジデンス",
       residenceHeaders: ["部屋タイプ", "料金／週"],
-      residenceRows: {
-        sharedRoom: "相部屋",
-        privateSharedBathroom: "個室・共用浴室",
-        privateBathroom: "個室・専用浴室"
-      }
+      residenceRows: { private: "個室" }
     },
 
     placeholders: {
@@ -103,7 +91,8 @@ var PricingI18n = {
       studyLanguage: "学習言語を選択してください。",
       course: "コースを選択してください。",
       age: "年齢を正しく入力してください（1〜99）。",
-      weeks: "受講期間を1〜52の範囲で入力してください。",
+      weeks: "受講期間を2〜52の範囲で入力してください。",
+      examWeeks: "試験対策コースの受講期間を8〜52の範囲で入力してください。",
       startDate: "開始予定日を選択してください。",
       stayMethod: "滞在方法を選択してください。",
       roomType: "部屋タイプを選択してください。",
@@ -118,7 +107,7 @@ var PricingI18n = {
     resultLabels: {
       studyLanguage: "学習言語",
       course: "コース",
-      lessonsPerWeek: "週のレッスン数",
+      weeklyHours: "週の授業時間",
       weeks: "受講期間",
       startDate: "開始予定日",
       stayMethod: "滞在方法",
@@ -152,7 +141,7 @@ var PricingI18n = {
   en: {
     courseNames: {
       english: { general: "General English", intensive: "Intensive English", exam: "IELTS Preparation" },
-      french: { general: "General French", intensive: "Intensive French", exam: "DELF/DALF Preparation" }
+      french: { general: "General French", intensive: "Intensive French", exam: "TCF/TEF Preparation" }
     },
     studyLanguageOptions: { english: "English Course", french: "French Course" },
     stayMethodOptions: {
@@ -162,16 +151,10 @@ var PricingI18n = {
       undecided: "Not decided yet"
     },
     roomTypeOptions: {
-      homestay: { private: "Private room", shared: "Shared room" },
-      residence: {
-        sharedRoom: "Shared room",
-        privateSharedBathroom: "Private room, shared bathroom",
-        privateBathroom: "Private room, private bathroom"
-      }
+      homestay: { private: "Private room" },
+      residence: { private: "Private room" }
     },
     mealPlanOptions: {
-      none: "No meals",
-      breakfast: "Breakfast included",
       twoMeals: "2 meals/day",
       threeMeals: "3 meals/day"
     },
@@ -193,26 +176,24 @@ var PricingI18n = {
       insurance: "Overseas insurance",
       minorSupport: "Minor student support"
     },
-    units: { weeks: "weeks", age: "years old", lessonsPerWeek: "{n} lessons/week" },
-    weekRanges: { short: "1–3 weeks", standard: "4–12 weeks", medium: "13–24 weeks", long: "25–52 weeks" },
-    examWeekRanges: { short: "1–3 weeks", standard: "4–12 weeks", medium: "13–24 weeks", long: "25+ weeks" },
+    units: { weeks: "weeks", age: "years old", weeklyHours: "{n} hours/week" },
+    weekRanges: { short: "2–4 weeks", standard: "5–12 weeks", medium: "13–24 weeks", long: "25–52 weeks" },
+    examWeekRanges: { standard: "8–12 weeks", medium: "13–24 weeks", long: "25–52 weeks" },
     individualQuoteLabel: "Contact us",
     pairJoiner: " & ",
 
     tuitionTable: {
       durationHeader: "Duration",
-      lessonsHeader: "Lessons",
-      weeklyRateHeader: "Weekly rate (CAD)",
-      generalIntensiveTitle: "{course} ({lessons})",
-      examTitle: "{course} ({lessons})",
-      examNote: "IELTS Preparation and DELF/DALF Preparation are reference prices for 4–24 weeks only. Please contact us for 1–3 weeks or 25+ weeks.",
+            weeklyRateHeader: "Weekly rate (CAD)",
+      generalIntensiveTitle: "{course} ({hours})",
+      examTitle: "{course} ({hours})",
       otherFeesTitle: "Other reference fees",
       otherFeesHeaders: ["Item", "Reference price (CAD)", "How it's calculated"],
       perWeekFormat: "{n}/week",
       capFormat: "Capped at CAD {n}",
       otherFeesRows: {
         registrationFee: { label: "Registration fee", calc: "One-time" },
-        materialsFeeBase: { label: "Materials fee (1–4 weeks)", calc: "Flat" },
+        materialsFeeBase: { label: "Materials fee (2–4 weeks)", calc: "Flat" },
         materialsFeePerWeek: { label: "Materials fee (5+ weeks)", calc: "{cap}" },
         placementFee: { label: "Accommodation placement fee", calc: "One-time (homestay/residence only)" },
         airportOneWay: { label: "Airport transfer (one-way)", calc: "One-time" },
@@ -223,19 +204,12 @@ var PricingI18n = {
       homestayTitle: "Homestay",
       homestayHeaders: ["Room & meals", "Weekly rate (CAD)"],
       homestayRows: {
-        privateNoMeals: "Private room, no meals",
-        privateBreakfast: "Private room, breakfast",
         privateTwoMeals: "Private room, 2 meals/day",
-        privateThreeMeals: "Private room, 3 meals/day",
-        sharedTwoMeals: "Shared room, 2 meals/day"
+        privateThreeMeals: "Private room, 3 meals/day"
       },
       residenceTitle: "Student Residence",
       residenceHeaders: ["Room type", "Weekly rate (CAD)"],
-      residenceRows: {
-        sharedRoom: "Shared room",
-        privateSharedBathroom: "Private room, shared bathroom",
-        privateBathroom: "Private room, private bathroom"
-      }
+      residenceRows: { private: "Private room" }
     },
 
     placeholders: {
@@ -249,16 +223,15 @@ var PricingI18n = {
       studyLanguage: "Please select a language.",
       course: "Please select a course.",
       age: "Please enter a valid age (1–99).",
-      weeks: "Please enter a course duration between 1 and 52 weeks.",
+      weeks: "Please enter a course duration between 2 and 52 weeks.",
+      examWeeks: "Please enter an exam-preparation duration between 8 and 52 weeks.",
       startDate: "Please select a preferred start date.",
       stayMethod: "Please select an accommodation type.",
       roomType: "Please select a room type.",
       stayWeeks: "Please enter an accommodation duration between 1 and 52 weeks."
     },
-
-    examCustomQuoteMessage: "Exam preparation courses at this duration require an individual quote. Please contact us.",
     minorSupportNotice: "Acceptance conditions, accommodation, airport transfer, and required documents for minors must be confirmed individually.",
-    temporaryDataNotice: "The prices shown are reference prices, set during DASS's pre-opening preparation based on 2026 pricing levels among Montreal language schools. They are not official prices.",
+    temporaryDataNotice: "The prices shown are reference prices, set during DASS MLS's pre-opening preparation based on 2026 pricing levels among Montreal language schools. They are not official prices.",
     quoteDisclaimer: "This estimate is based on reference pricing only and is not an official enrollment amount.",
 
     resultHeading: "Your Estimate",
@@ -267,7 +240,7 @@ var PricingI18n = {
     resultLabels: {
       studyLanguage: "Language",
       course: "Course",
-      lessonsPerWeek: "Lessons per week",
+      weeklyHours: "Hours per week",
       weeks: "Course duration",
       startDate: "Preferred start date",
       stayMethod: "Accommodation",
@@ -302,7 +275,7 @@ var PricingI18n = {
   fr: {
     courseNames: {
       english: { general: "Anglais général", intensive: "Anglais intensif", exam: "Préparation à l’IELTS" },
-      french: { general: "Français général", intensive: "Français intensif", exam: "Préparation au DELF/DALF" }
+      french: { general: "Français général", intensive: "Français intensif", exam: "Préparation au TCF/TEF" }
     },
     studyLanguageOptions: { english: "Cours d’anglais", french: "Cours de français" },
     stayMethodOptions: {
@@ -312,16 +285,10 @@ var PricingI18n = {
       undecided: "Pas encore décidé"
     },
     roomTypeOptions: {
-      homestay: { private: "Chambre individuelle", shared: "Chambre partagée" },
-      residence: {
-        sharedRoom: "Chambre partagée",
-        privateSharedBathroom: "Chambre individuelle, salle de bain partagée",
-        privateBathroom: "Chambre individuelle, salle de bain privée"
-      }
+      homestay: { private: "Chambre individuelle" },
+      residence: { private: "Chambre individuelle" }
     },
     mealPlanOptions: {
-      none: "Sans repas",
-      breakfast: "Petit-déjeuner inclus",
       twoMeals: "2 repas/jour",
       threeMeals: "3 repas/jour"
     },
@@ -343,26 +310,24 @@ var PricingI18n = {
       insurance: "Assurance voyage",
       minorSupport: "Accompagnement des mineurs"
     },
-    units: { weeks: "semaines", age: "ans", lessonsPerWeek: "{n} cours/semaine" },
-    weekRanges: { short: "1 à 3 semaines", standard: "4 à 12 semaines", medium: "13 à 24 semaines", long: "25 à 52 semaines" },
-    examWeekRanges: { short: "1 à 3 semaines", standard: "4 à 12 semaines", medium: "13 à 24 semaines", long: "25 semaines ou plus" },
+    units: { weeks: "semaines", age: "ans", weeklyHours: "{n} heures/semaine" },
+    weekRanges: { short: "2 à 4 semaines", standard: "5 à 12 semaines", medium: "13 à 24 semaines", long: "25 à 52 semaines" },
+    examWeekRanges: { standard: "8 à 12 semaines", medium: "13 à 24 semaines", long: "25 à 52 semaines" },
     individualQuoteLabel: "Nous contacter",
     pairJoiner: " et ",
 
     tuitionTable: {
       durationHeader: "Durée",
-      lessonsHeader: "Cours",
-      weeklyRateHeader: "Tarif hebdomadaire (CAD)",
-      generalIntensiveTitle: "{course} ({lessons})",
-      examTitle: "{course} ({lessons})",
-      examNote: "La préparation à l’IELTS et au DELF/DALF sont des tarifs de référence pour 4 à 24 semaines seulement. Veuillez nous contacter pour 1 à 3 semaines ou 25 semaines et plus.",
+            weeklyRateHeader: "Tarif hebdomadaire (CAD)",
+      generalIntensiveTitle: "{course} ({hours})",
+      examTitle: "{course} ({hours})",
       otherFeesTitle: "Autres frais de référence",
       otherFeesHeaders: ["Élément", "Tarif de référence (CAD)", "Mode de calcul"],
       perWeekFormat: "{n}/semaine",
       capFormat: "Plafonné à {n} CAD",
       otherFeesRows: {
         registrationFee: { label: "Frais d’inscription", calc: "Unique" },
-        materialsFeeBase: { label: "Frais de matériel (1 à 4 semaines)", calc: "Forfaitaire" },
+        materialsFeeBase: { label: "Frais de matériel (2 à 4 semaines)", calc: "Forfaitaire" },
         materialsFeePerWeek: { label: "Frais de matériel (5 semaines et plus)", calc: "{cap}" },
         placementFee: { label: "Frais de placement en hébergement", calc: "Unique (famille d’accueil/résidence seulement)" },
         airportOneWay: { label: "Transfert aéroport (aller simple)", calc: "Unique" },
@@ -373,19 +338,12 @@ var PricingI18n = {
       homestayTitle: "Famille d’accueil",
       homestayHeaders: ["Chambre et repas", "Tarif hebdomadaire (CAD)"],
       homestayRows: {
-        privateNoMeals: "Chambre individuelle, sans repas",
-        privateBreakfast: "Chambre individuelle, petit-déjeuner",
         privateTwoMeals: "Chambre individuelle, 2 repas/jour",
-        privateThreeMeals: "Chambre individuelle, 3 repas/jour",
-        sharedTwoMeals: "Chambre partagée, 2 repas/jour"
+        privateThreeMeals: "Chambre individuelle, 3 repas/jour"
       },
       residenceTitle: "Résidence étudiante",
       residenceHeaders: ["Type de chambre", "Tarif hebdomadaire (CAD)"],
-      residenceRows: {
-        sharedRoom: "Chambre partagée",
-        privateSharedBathroom: "Chambre individuelle, salle de bain partagée",
-        privateBathroom: "Chambre individuelle, salle de bain privée"
-      }
+      residenceRows: { private: "Chambre individuelle" }
     },
 
     placeholders: {
@@ -399,16 +357,15 @@ var PricingI18n = {
       studyLanguage: "Veuillez choisir une langue.",
       course: "Veuillez choisir un cours.",
       age: "Veuillez entrer un âge valide (1–99).",
-      weeks: "Veuillez entrer une durée de cours entre 1 et 52 semaines.",
+      weeks: "Veuillez entrer une durée de cours entre 2 et 52 semaines.",
+      examWeeks: "Veuillez entrer une durée de préparation à l’examen entre 8 et 52 semaines.",
       startDate: "Veuillez choisir une date de début souhaitée.",
       stayMethod: "Veuillez choisir un type d’hébergement.",
       roomType: "Veuillez choisir un type de chambre.",
       stayWeeks: "Veuillez entrer une durée d’hébergement entre 1 et 52 semaines."
     },
-
-    examCustomQuoteMessage: "Pour cette durée, les cours de préparation aux examens font l’objet d’un devis individuel. Veuillez nous contacter.",
     minorSupportNotice: "Les conditions d’accueil des mineurs, l’hébergement, le transfert aéroport et les documents requis doivent être confirmés individuellement.",
-    temporaryDataNotice: "Les tarifs affichés sont des tarifs de référence, établis pendant la préparation de l’ouverture de DASS à partir des niveaux de prix 2026 des écoles de langues de Montréal. Ce ne sont pas des tarifs officiels.",
+    temporaryDataNotice: "Les tarifs affichés sont des tarifs de référence, établis pendant la préparation de l’ouverture de DASS MLS à partir des niveaux de prix 2026 des écoles de langues de Montréal. Ce ne sont pas des tarifs officiels.",
     quoteDisclaimer: "Cette estimation repose uniquement sur des tarifs de référence et ne constitue pas un montant d’inscription officiel.",
 
     resultHeading: "Votre estimation",
@@ -417,7 +374,7 @@ var PricingI18n = {
     resultLabels: {
       studyLanguage: "Langue",
       course: "Cours",
-      lessonsPerWeek: "Cours par semaine",
+      weeklyHours: "Heures par semaine",
       weeks: "Durée du cours",
       startDate: "Date de début souhaitée",
       stayMethod: "Hébergement",

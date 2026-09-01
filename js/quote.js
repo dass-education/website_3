@@ -101,6 +101,30 @@
       return checked ? checked.value : "";
     }
 
+    function updateWeeksConstraint() {
+      var minWeeks = el.course.value === "exam" ? 8 : 2;
+      el.weeks.min = String(minWeeks);
+      // For homestay, the accommodation period must match the course period.
+      // Keep the same minimum-week rule on both inputs.
+      if (el.stay && el.stay.value === "homestay") {
+        el.stayWeeks.min = String(minWeeks);
+      } else {
+        el.stayWeeks.min = "1";
+      }
+    }
+
+    function syncStayWeeksFromCourse() {
+      if (el.stay.value !== "homestay") return;
+      el.stayWeeks.value = el.weeks.value;
+      touched.stayWeeks = touched.weeks || touched.stayWeeks;
+    }
+
+    function syncCourseWeeksFromStay() {
+      if (el.stay.value !== "homestay") return;
+      el.weeks.value = el.stayWeeks.value;
+      touched.weeks = touched.stayWeeks || touched.weeks;
+    }
+
     // ---- Room type / meal plan options depend on accommodation choice ----
     function populateRoomOptions() {
       var stayMethod = el.stay.value;
@@ -159,7 +183,7 @@
       }
       el.meal.disabled = false;
 
-      var mealKeys = roomType === "shared" ? ["twoMeals"] : ["none", "breakfast", "twoMeals", "threeMeals"];
+      var mealKeys = ["twoMeals", "threeMeals"];
       mealKeys.forEach(function (key) {
         var option = document.createElement("option");
         option.value = key;
@@ -178,8 +202,7 @@
         var room = el.room.value;
         var meal = el.meal.value;
         if (!room || !meal) return null;
-        if (room === "shared") return "sharedTwoMeals";
-        var privateMap = { none: "privateNoMeals", breakfast: "privateBreakfast", twoMeals: "privateTwoMeals", threeMeals: "privateThreeMeals" };
+        var privateMap = { twoMeals: "privateTwoMeals", threeMeals: "privateThreeMeals" };
         return privateMap[meal] || null;
       }
       return null;
@@ -227,8 +250,10 @@
       }
 
       var weeks = parseInt(el.weeks.value, 10);
-      if (el.weeks.value === "" || isNaN(weeks) || weeks < 1 || weeks > 52) {
-        setError(el.weeksError, touched.weeks ? i18n.validation.weeks : "", el.weeks);
+      var minimumWeeks = v.courseType === "exam" ? 8 : 2;
+      var weeksMessage = v.courseType === "exam" ? (i18n.validation.examWeeks || i18n.validation.weeks) : i18n.validation.weeks;
+      if (el.weeks.value === "" || isNaN(weeks) || weeks < minimumWeeks || weeks > 52) {
+        setError(el.weeksError, touched.weeks ? weeksMessage : "", el.weeks);
         valid = false;
       } else {
         setError(el.weeksError, "", el.weeks);
@@ -262,7 +287,8 @@
         }
 
         var stayWeeks = parseInt(el.stayWeeks.value, 10);
-        if (el.stayWeeks.value === "" || isNaN(stayWeeks) || stayWeeks < 1 || stayWeeks > 52) {
+        var minimumStayWeeks = v.stayMethod === "homestay" ? minimumWeeks : 1;
+        if (el.stayWeeks.value === "" || isNaN(stayWeeks) || stayWeeks < minimumStayWeeks || stayWeeks > 52) {
           setError(el.stayWeeksError, touched.stayWeeks ? i18n.validation.stayWeeks : "", el.stayWeeks);
           valid = false;
         } else {
@@ -331,7 +357,7 @@
       var summaryRows = [
         [rl.studyLanguage, i18n.studyLanguageOptions[v.studyLanguage]],
         [rl.course, i18n.courseNames[v.studyLanguage][v.courseType]],
-        [rl.lessonsPerWeek, fillTemplate(i18n.units.lessonsPerWeek, { n: quote.lessonCount })],
+        [rl.weeklyHours, fillTemplate(i18n.units.weeklyHours, { n: quote.weeklyHours })],
         [rl.weeks, v.weeks + " " + i18n.units.weeks],
         [rl.startDate, v.startDate],
         [rl.stayMethod, stayMethodText],
@@ -426,20 +452,32 @@
     el.languageRadios.forEach(function (radio) {
       radio.addEventListener("change", function () {
         populateCourseOptions();
+        updateWeeksConstraint();
         recalculate();
       });
     });
-    el.course.addEventListener("change", markTouched("course"));
+    el.course.addEventListener("change", function () {
+      touched.course = true;
+      updateWeeksConstraint();
+      syncStayWeeksFromCourse();
+      recalculate();
+    });
     el.age.addEventListener("input", function () {
       touched.age = true;
       updateMinorSupportVisibility();
       recalculate();
     });
-    el.weeks.addEventListener("input", markTouched("weeks"));
+    el.weeks.addEventListener("input", function () {
+      touched.weeks = true;
+      syncStayWeeksFromCourse();
+      recalculate();
+    });
     el.start.addEventListener("change", markTouched("start"));
     el.stay.addEventListener("change", function () {
       touched.stay = true;
       populateRoomOptions();
+      updateWeeksConstraint();
+      syncStayWeeksFromCourse();
       recalculate();
     });
     el.room.addEventListener("change", function () {
@@ -448,7 +486,11 @@
       recalculate();
     });
     el.meal.addEventListener("change", markTouched("meal"));
-    el.stayWeeks.addEventListener("input", markTouched("stayWeeks"));
+    el.stayWeeks.addEventListener("input", function () {
+      touched.stayWeeks = true;
+      syncCourseWeeksFromStay();
+      recalculate();
+    });
     el.airport.addEventListener("change", recalculate);
     el.insurance.addEventListener("change", recalculate);
     el.minorRadios.forEach(function (radio) {
@@ -459,6 +501,7 @@
       form.reset();
       touched = {};
       populateCourseOptions();
+      updateWeeksConstraint();
       populateRoomOptions();
       updateMinorSupportVisibility();
       Object.keys(el).forEach(function (key) {
@@ -492,6 +535,7 @@
 
     // ---- Initial state ----
     populateCourseOptions();
+    updateWeeksConstraint();
     populateRoomOptions();
     updateMinorSupportVisibility();
     el.resultEmpty.hidden = false;

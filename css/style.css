@@ -485,6 +485,7 @@ section { padding: 80px 0; }
   white-space: nowrap;
 }
 .mini-course-card--fr .meta-pill { background: var(--color-soft-bg-2); }
+.mini-course-card--exam .meta-pill { background: var(--color-soft-bg-2); }
 
 .track-block { margin-bottom: 64px; }
 .track-block:last-child { margin-bottom: 0; }
@@ -1275,4 +1276,185 @@ section { padding: 80px 0; }
 @media (max-width: 360px) {
   .compact-price-table th,
   .compact-price-table td { padding: 10px 8px; font-size: 0.82rem; }
+}
+
+/* Simplified accommodation price tables: keep all columns visible on phones. */
+.accommodation-table-wrapper {
+  overflow-x: visible;
+  max-width: 600px;
+}
+.accommodation-price-table {
+  min-width: 0;
+  table-layout: fixed;
+}
+.accommodation-price-table th,
+.accommodation-price-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 520px) {
+  .accommodation-price-table th,
+  .accommodation-price-table td {
+    padding: 11px 7px;
+    font-size: 0.84rem;
+  }
+  .accommodation-price-table th.num,
+  .accommodation-price-table td.num {
+    white-space: nowrap;
+  }
+}
+
+
+/* ---- Minor support fee table: always fit within the phone viewport -------- */
+.minor-support-table-wrapper {
+  overflow-x: visible;
+  width: 100%;
+  max-width: 620px;
+}
+.minor-support-table {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+}
+.minor-support-table th:first-child,
+.minor-support-table td:first-child {
+  width: 64%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.minor-support-table th.num,
+.minor-support-table td.num {
+  width: 36%;
+  white-space: nowrap;
+}
+
+/* ---- DASS MLS school photo gallery ----------------------------------------- */
+.school-photo-section {
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-soft-bg) 100%);
+  overflow: hidden;
+}
+.school-photo-header {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.school-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+  margin-top: 34px;
+}
+.school-gallery-item {
+  margin: 0;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(14, 42, 68, 0.13);
+}
+.school-gallery-item:nth-child(even) {
+  margin-top: 28px;
+}
+.school-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.35s ease;
+}
+@media (hover: hover) {
+  .school-gallery-item:hover img { transform: scale(1.025); }
+}
+.school-address {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 760px;
+  margin: 58px auto 0;
+  padding: 18px 22px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-soft);
+}
+.school-address-icon {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.school-address p {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.55;
+}
+.school-address p span {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 2px;
+}
+
+@media (max-width: 900px) {
+  .school-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .school-gallery-item:nth-child(even) { margin-top: 22px; }
+}
+
+@media (max-width: 520px) {
+  .minor-support-table th,
+  .minor-support-table td {
+    padding: 11px 9px;
+    font-size: 0.86rem;
+  }
+  .minor-support-table th:first-child,
+  .minor-support-table td:first-child { width: 61%; }
+  .minor-support-table th.num,
+  .minor-support-table td.num { width: 39%; }
+
+  .school-photo-section { padding-top: 52px; padding-bottom: 52px; }
+  .school-gallery {
+    gap: 9px;
+    margin-top: 26px;
+  }
+  .school-gallery-item { border-radius: 13px; }
+  .school-gallery-item:nth-child(even) { margin-top: 14px; }
+  .school-address {
+    margin-top: 36px;
+    padding: 15px 16px;
+    gap: 11px;
+    align-items: flex-start;
+  }
+  .school-address-icon {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+    font-size: 1.05rem;
+  }
+  .school-address p { font-size: 0.9rem; }
+}
+
+@media (max-width: 360px) {
+  .minor-support-table th,
+  .minor-support-table td { padding: 10px 7px; font-size: 0.8rem; }
+  .school-gallery { gap: 7px; }
+}
+
+
+/* Extra breathing room before student residence pricing */
+.residence-table-title { margin-top: 56px; }
+#residence-table-container { margin-top: 88px; }
+
+@media (max-width: 768px) {
+  #residence-table-container { margin-top: 72px; }
 }

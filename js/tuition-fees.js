@@ -10,9 +10,9 @@
   "use strict";
 
   // `compact`: simple 2-column tables (course fees, other fees) render with
-  // no horizontal scroll — capped width on desktop, fits the phone screen
-  // on mobile. Wider comparison tables (homestay, residence) keep the
-  // scrollable wrapper since they carry more columns of information.
+  // no horizontal scroll — capped width on desktop and sized to fit the
+  // phone screen. The simplified accommodation tables use the same compact
+  // treatment so no horizontal swipe is required.
   function buildTable(headers, rows, numericCols, compact) {
     numericCols = numericCols || [];
     var thead = "<tr>" + headers.map(function (h, i) {
@@ -39,10 +39,7 @@
     return pricingData.currency + " " + PricingEngine.formatAmount(amount);
   }
 
-  // Renders the weekly-rate table shared by General, Intensive, and exam-prep
-  // courses. Exam prep (courseType "exam") follows the English track's IELTS
-  // entry for lesson count/rates — French DELF/DALF uses identical rates
-  // (see js/pricing-data.js), so one table serves both languages either way.
+  // Renders weekly rates for General, Intensive, and exam-preparation courses.
   function renderCourseTable(containerId, courseType, i18n) {
     var container = document.getElementById(containerId);
     if (!container) return;
@@ -50,12 +47,13 @@
     var t = i18n.tuitionTable;
     var englishData = courseType === "exam" ? pricingData.tuition.english.ielts : pricingData.tuition.english[courseType];
     var courseTitle = i18n.courseNames.english[courseType] + i18n.pairJoiner + i18n.courseNames.french[courseType];
-    var lessonsLabel = fillTemplate(i18n.units.lessonsPerWeek, { n: englishData.lessonCount });
-    var title = fillTemplate(t.generalIntensiveTitle, { course: courseTitle, lessons: lessonsLabel });
+    var hoursLabel = fillTemplate(i18n.units.weeklyHours, { n: englishData.weeklyHours });
+    var title = fillTemplate(t.generalIntensiveTitle, { course: courseTitle, hours: hoursLabel });
 
-    var tiers = ["short", "standard", "medium", "long"];
+    var tiers = courseType === "exam" ? ["standard", "medium", "long"] : ["short", "standard", "medium", "long"];
+    var ranges = courseType === "exam" ? i18n.examWeekRanges : i18n.weekRanges;
     var rows = tiers.map(function (tier) {
-      return [i18n.weekRanges[tier], currency(englishData.rates[tier])];
+      return [ranges[tier], currency(englishData.rates[tier])];
     });
 
     container.innerHTML =

@@ -1,55 +1,53 @@
 /* ==========================================================================
    DASS Montréal Language School — pricing-data.js
-   Single source of truth for all fee amounts used by the quote estimator
-   (js/quote.js) and the Tuition & Fees page renderer (js/tuition-fees.js).
-   Update numbers here only — never hard-code amounts in HTML or elsewhere.
+   Single source of truth for tuition and other fee amounts used by the
+   quote estimator and the Tuition & Fees page.
    ========================================================================== */
-
-// Shared rate tables so exam-prep courses can reference (not duplicate)
-// their language's Intensive pricing, per current business rules:
-// exam-prep lesson count matches General (24/week); exam-prep pricing
-// matches Intensive (same weekly rates, same 1–52 week tiers).
-var englishIntensiveRates = { short: 455, standard: 445, medium: 435, long: 425 };
-var frenchIntensiveRates = { short: 455, standard: 445, medium: 435, long: 425 };
 
 var pricingData = {
   currency: "CAD",
-  effectiveDate: "2026-07",
+  effectiveDate: "2026-09",
 
   tuition: {
     english: {
       general: {
-        lessonCount: 24,
-        lessonMinutes: 50,
-        rates: { short: 390, standard: 385, medium: 375, long: 365 }
+        weeklyHours: 15,
+        schedule: "9:00–12:00",
+        minWeeks: 2,
+        rates: { short: 350, standard: 340, medium: 330, long: 320 }
       },
       intensive: {
-        lessonCount: 30,
-        lessonMinutes: 50,
-        rates: englishIntensiveRates
+        weeklyHours: 25,
+        schedule: "9:00–15:30",
+        minWeeks: 2,
+        rates: { short: 550, standard: 540, medium: 530, long: 520 }
       },
       ielts: {
-        lessonCount: 24,
-        lessonMinutes: 50,
-        rates: englishIntensiveRates
+        weeklyHours: 25,
+        schedule: "9:00–15:30",
+        minWeeks: 8,
+        rates: { standard: 570, medium: 560, long: 540 }
       }
     },
 
     french: {
       general: {
-        lessonCount: 24,
-        lessonMinutes: 50,
-        rates: { short: 390, standard: 385, medium: 375, long: 365 }
+        weeklyHours: 15,
+        schedule: "9:00–12:00",
+        minWeeks: 2,
+        rates: { short: 350, standard: 340, medium: 330, long: 320 }
       },
       intensive: {
-        lessonCount: 30,
-        lessonMinutes: 50,
-        rates: frenchIntensiveRates
+        weeklyHours: 25,
+        schedule: "9:00–15:30",
+        minWeeks: 2,
+        rates: { short: 550, standard: 540, medium: 530, long: 520 }
       },
-      delfDalf: {
-        lessonCount: 24,
-        lessonMinutes: 50,
-        rates: frenchIntensiveRates
+      frenchExam: {
+        weeklyHours: 25,
+        schedule: "9:00–15:30",
+        minWeeks: 8,
+        rates: { standard: 570, medium: 560, long: 540 }
       }
     }
   },
@@ -80,16 +78,11 @@ var pricingData = {
   },
 
   homestay: {
-    privateNoMeals: 320,
-    privateBreakfast: 350,
     privateTwoMeals: 390,
-    privateThreeMeals: 420,
-    sharedTwoMeals: 340
+    privateThreeMeals: 420
   },
 
   residence: {
-    sharedRoom: 350,
-    privateSharedBathroom: 500,
-    privateBathroom: 600
+    private: 500
   }
 };
