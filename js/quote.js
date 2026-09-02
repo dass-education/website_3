@@ -33,6 +33,13 @@
       weeksError: document.getElementById("quote-weeks-error"),
       start: document.getElementById("quote-start"),
       startError: document.getElementById("quote-start-error"),
+      startPicker: document.getElementById("quote-start-picker"),
+      startToggle: document.getElementById("quote-start-toggle"),
+      startCalendar: document.getElementById("quote-start-calendar"),
+      startPrev: document.getElementById("quote-start-prev"),
+      startNext: document.getElementById("quote-start-next"),
+      startMonth: document.getElementById("quote-start-month"),
+      startGrid: document.getElementById("quote-start-grid"),
       stay: document.getElementById("quote-stay"),
       stayError: document.getElementById("quote-stay-error"),
       roomField: document.getElementById("quote-room-field"),
@@ -70,6 +77,140 @@
       return template.replace(/\{(\w+)\}/g, function (match, key) {
         return Object.prototype.hasOwnProperty.call(values, key) ? values[key] : match;
       });
+    }
+
+    // ---- Start-date calendar: Monday-first, Mondays only, current month through +24 months ----
+    function makeCalendarDate(year, month, day) {
+      return new Date(year, month, day, 12, 0, 0, 0);
+    }
+
+    function formatDateValue(date) {
+      var year = date.getFullYear();
+      var month = String(date.getMonth() + 1).padStart(2, "0");
+      var day = String(date.getDate()).padStart(2, "0");
+      return year + "-" + month + "-" + day;
+    }
+
+    function parseDateValue(value) {
+      if (!value) return null;
+      var parts = value.split("-");
+      if (parts.length !== 3) return null;
+      var date = makeCalendarDate(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+      return isNaN(date.getTime()) ? null : date;
+    }
+
+    var today = new Date();
+    today = makeCalendarDate(today.getFullYear(), today.getMonth(), today.getDate());
+    var calendarMinMonth = makeCalendarDate(today.getFullYear(), today.getMonth(), 1);
+    var calendarMaxMonth = makeCalendarDate(today.getFullYear(), today.getMonth() + 24, 1);
+    var calendarMaxDate = makeCalendarDate(calendarMaxMonth.getFullYear(), calendarMaxMonth.getMonth() + 1, 0);
+    var calendarViewDate = makeCalendarDate(calendarMinMonth.getFullYear(), calendarMinMonth.getMonth(), 1);
+
+    function compareMonth(a, b) {
+      return (a.getFullYear() * 12 + a.getMonth()) - (b.getFullYear() * 12 + b.getMonth());
+    }
+
+    function formatMonthLabel(date) {
+      return date.getFullYear() + "年" + (date.getMonth() + 1) + "月";
+    }
+
+    function formatDateAriaLabel(date, selectable) {
+      var weekdays = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"];
+      var label = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日 " + weekdays[date.getDay()];
+      if (!selectable) label += "、選択できません";
+      return label;
+    }
+
+    function isSelectableMonday(date) {
+      return date && date.getDay() === 1 && date >= today && date <= calendarMaxDate;
+    }
+
+    function isMondayDate(value) {
+      var date = parseDateValue(value);
+      return !!date && isSelectableMonday(date);
+    }
+
+    function renderStartCalendar() {
+      if (!el.startGrid || !el.startMonth) return;
+
+      el.startMonth.textContent = formatMonthLabel(calendarViewDate);
+      el.startPrev.disabled = compareMonth(calendarViewDate, calendarMinMonth) <= 0;
+      el.startNext.disabled = compareMonth(calendarViewDate, calendarMaxMonth) >= 0;
+      el.startGrid.innerHTML = "";
+
+      var year = calendarViewDate.getFullYear();
+      var month = calendarViewDate.getMonth();
+      var firstDay = (makeCalendarDate(year, month, 1).getDay() + 6) % 7;
+      var daysInMonth = makeCalendarDate(year, month + 1, 0).getDate();
+      var selectedValue = el.start.value;
+
+      for (var blank = 0; blank < firstDay; blank += 1) {
+        var spacer = document.createElement("span");
+        spacer.className = "monday-calendar-spacer";
+        spacer.setAttribute("aria-hidden", "true");
+        el.startGrid.appendChild(spacer);
+      }
+
+      for (var day = 1; day <= daysInMonth; day += 1) {
+        (function () {
+          var date = makeCalendarDate(year, month, day);
+          var value = formatDateValue(date);
+          var selectable = isSelectableMonday(date);
+          var button = document.createElement("button");
+          button.type = "button";
+          button.className = "monday-calendar-day";
+          button.textContent = String(day);
+          button.setAttribute("role", "gridcell");
+          button.setAttribute("aria-label", formatDateAriaLabel(date, selectable));
+
+          if (date.getDay() === 1) button.classList.add("is-monday");
+          if (!selectable) {
+            button.disabled = true;
+            button.classList.add("is-disabled");
+          }
+          if (value === selectedValue) {
+            button.classList.add("is-selected");
+            button.setAttribute("aria-selected", "true");
+          } else {
+            button.setAttribute("aria-selected", "false");
+          }
+          if (value === formatDateValue(today)) button.classList.add("is-today");
+
+          if (selectable) {
+            button.addEventListener("click", function () {
+              el.start.value = value;
+              touched.start = true;
+              renderStartCalendar();
+              closeStartCalendar();
+              recalculate();
+              el.start.focus();
+            });
+          }
+          el.startGrid.appendChild(button);
+        })();
+      }
+    }
+
+    function openStartCalendar() {
+      if (!el.startCalendar) return;
+      var selectedDate = parseDateValue(el.start.value);
+      if (selectedDate && compareMonth(selectedDate, calendarMinMonth) >= 0 && compareMonth(selectedDate, calendarMaxMonth) <= 0) {
+        calendarViewDate = makeCalendarDate(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
+      }
+      renderStartCalendar();
+      el.startCalendar.hidden = false;
+      el.startToggle.setAttribute("aria-expanded", "true");
+    }
+
+    function closeStartCalendar() {
+      if (!el.startCalendar) return;
+      el.startCalendar.hidden = true;
+      el.startToggle.setAttribute("aria-expanded", "false");
+    }
+
+    function toggleStartCalendar() {
+      if (el.startCalendar.hidden) openStartCalendar();
+      else closeStartCalendar();
     }
 
     // ---- Course <select> options depend on the chosen study language ----
@@ -263,6 +404,12 @@
       v.startDate = el.start.value;
       if (!v.startDate) {
         setError(el.startError, touched.start ? i18n.validation.startDate : "", el.start);
+        valid = false;
+      } else if (!isMondayDate(v.startDate)) {
+        var mondayError = lang.indexOf("fr") === 0
+          ? "La date de début doit être un lundi."
+          : (lang.indexOf("en") === 0 ? "The start date must be a Monday." : "開始日は月曜日を選択してください。");
+        setError(el.startError, touched.start ? mondayError : "", el.start);
         valid = false;
       } else {
         setError(el.startError, "", el.start);
@@ -472,7 +619,30 @@
       syncStayWeeksFromCourse();
       recalculate();
     });
-    el.start.addEventListener("change", markTouched("start"));
+    el.start.addEventListener("click", openStartCalendar);
+    el.start.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " " || event.key === "ArrowDown") {
+        event.preventDefault();
+        openStartCalendar();
+      } else if (event.key === "Escape") {
+        closeStartCalendar();
+      }
+    });
+    el.startToggle.addEventListener("click", toggleStartCalendar);
+    el.startPrev.addEventListener("click", function () {
+      if (compareMonth(calendarViewDate, calendarMinMonth) <= 0) return;
+      calendarViewDate = makeCalendarDate(calendarViewDate.getFullYear(), calendarViewDate.getMonth() - 1, 1);
+      renderStartCalendar();
+    });
+    el.startNext.addEventListener("click", function () {
+      if (compareMonth(calendarViewDate, calendarMaxMonth) >= 0) return;
+      calendarViewDate = makeCalendarDate(calendarViewDate.getFullYear(), calendarViewDate.getMonth() + 1, 1);
+      renderStartCalendar();
+    });
+    document.addEventListener("click", function (event) {
+      if (!el.startPicker || el.startCalendar.hidden) return;
+      if (!el.startPicker.contains(event.target)) closeStartCalendar();
+    });
     el.stay.addEventListener("change", function () {
       touched.stay = true;
       populateRoomOptions();
@@ -501,6 +671,9 @@
       form.reset();
       touched = {};
       populateCourseOptions();
+      calendarViewDate = makeCalendarDate(calendarMinMonth.getFullYear(), calendarMinMonth.getMonth(), 1);
+      renderStartCalendar();
+      closeStartCalendar();
       updateWeeksConstraint();
       populateRoomOptions();
       updateMinorSupportVisibility();
@@ -535,6 +708,7 @@
 
     // ---- Initial state ----
     populateCourseOptions();
+    renderStartCalendar();
     updateWeeksConstraint();
     populateRoomOptions();
     updateMinorSupportVisibility();

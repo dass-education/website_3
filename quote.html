@@ -8,7 +8,7 @@
 <link rel="icon" href="images/favicon.png" type="image/png">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="quote-page">
 
 <header class="site-header">
   <div class="container header-inner">
@@ -111,7 +111,27 @@
           </div>
           <div class="field">
             <label for="quote-start">開始予定日 <span class="required-mark">必須</span></label>
-            <input type="date" id="quote-start" name="quote-start" required aria-describedby="quote-start-error">
+            <div class="monday-date-picker" id="quote-start-picker">
+              <div class="monday-date-input-row">
+                <input type="text" id="quote-start" name="quote-start" placeholder="カレンダーから月曜日を選択" readonly required aria-describedby="quote-start-hint quote-start-error" autocomplete="off">
+                <button type="button" class="monday-calendar-toggle" id="quote-start-toggle" aria-expanded="false" aria-controls="quote-start-calendar" aria-label="開始予定日のカレンダーを開く">
+                  <span aria-hidden="true">📅</span>
+                </button>
+              </div>
+              <div class="monday-calendar" id="quote-start-calendar" hidden>
+                <div class="monday-calendar-header">
+                  <button type="button" class="monday-calendar-nav" id="quote-start-prev" aria-label="前の月">‹</button>
+                  <p class="monday-calendar-month" id="quote-start-month" aria-live="polite"></p>
+                  <button type="button" class="monday-calendar-nav" id="quote-start-next" aria-label="次の月">›</button>
+                </div>
+                <div class="monday-calendar-weekdays" aria-hidden="true">
+                  <span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span><span>日</span>
+                </div>
+                <div class="monday-calendar-grid" id="quote-start-grid" role="grid" aria-label="開始予定日を選択"></div>
+                <p class="monday-calendar-note">月曜日のみ選択できます。月曜日以外と過去の日付は選択できません。</p>
+              </div>
+            </div>
+            <p class="field-hint" id="quote-start-hint">今月から2年先までの月曜日を選択できます。</p>
             <p class="field-error" id="quote-start-error" role="alert" hidden></p>
           </div>
         </fieldset>
