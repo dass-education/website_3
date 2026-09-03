@@ -118,7 +118,6 @@ section { padding: 80px 0; }
   border-color: var(--color-accent);
 }
 .btn-outline:hover { background: var(--color-soft-bg); transform: translateY(-2px); }
-.btn-block { width: 100%; }
 .btn-sm { padding: 9px 20px; font-size: 0.85rem; }
 .btn[disabled] {
   opacity: 0.55;
@@ -378,43 +377,7 @@ section { padding: 80px 0; }
   gap: 28px;
 }
 
-/* ---- Course selection cards -------------------------------------------------- */
-.course-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-}
-.course-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
-  border: 1px solid var(--color-border);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-.course-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-soft);
-}
-.course-card-image {
-  height: 220px;
-  width: 100%;
-  overflow: hidden;
-}
-.course-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.course-card-body {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 32px;
-}
+/* ---- Course card tags / mini course cards ----------------------------------- */
 .course-card-tag {
   display: inline-block;
   align-self: flex-start;
@@ -427,16 +390,6 @@ section { padding: 80px 0; }
   border-radius: 999px;
   margin-bottom: 14px;
 }
-.course-card--fr .course-card-tag {
-  color: var(--color-cta);
-  background: var(--color-soft-bg-2);
-}
-.course-card-body h3 { font-size: 1.35rem; }
-.course-card-body p {
-  color: var(--color-text-soft);
-  flex: 1;
-}
-.course-card-body .btn { margin-top: 12px; align-self: flex-start; }
 
 /* Mini course cards used on the homepage (6-up) and course track pages */
 .mini-course-card {
@@ -877,29 +830,21 @@ section { padding: 80px 0; }
   color: var(--color-text-soft);
   margin-top: 6px;
 }
-.quote-form .checkbox-group, .quote-form .radio-group {
+.quote-form .radio-group {
   display: flex;
   flex-wrap: wrap;
   gap: 12px 20px;
 }
-.quote-form .checkbox-group label, .quote-form .radio-group label {
+.quote-form .radio-group label {
   display: flex;
   align-items: center;
   gap: 8px;
   font-weight: 500;
   font-size: 0.92rem;
 }
-.quote-form .checkbox-group input, .quote-form .radio-group input {
+.quote-form .radio-group input {
   width: auto;
   accent-color: var(--color-accent);
-}
-.quote-preview-note {
-  background: var(--color-soft-bg);
-  border: 1px dashed var(--color-accent);
-  border-radius: var(--radius-md);
-  padding: 18px 20px;
-  color: var(--color-text);
-  font-size: 0.9rem;
 }
 .quote-submit-row {
   display: flex;
@@ -1046,11 +991,6 @@ section { padding: 80px 0; }
   padding: 32px;
   box-shadow: var(--shadow-card);
 }
-.form-embed-note {
-  color: var(--color-text-soft);
-  font-size: 0.92rem;
-  margin-bottom: 20px;
-}
 
 /* Responsive container that will hold the pasted FormMailer HTML embed
    code. Only layout/spacing is styled here — the form markup itself
@@ -1116,22 +1056,6 @@ section { padding: 80px 0; }
   transform: translateY(-2px);
 }
 
-.formmailer-placeholder-note {
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-bg-alt);
-  padding: 40px 24px;
-  text-align: center;
-  color: var(--color-text-soft);
-  font-size: 0.95rem;
-}
-.formmailer-placeholder-note strong {
-  display: block;
-  color: var(--color-text);
-  font-size: 1rem;
-  margin-bottom: 6px;
-}
-
 /* ---- Privacy policy / long-form content page ---------------------------------------------------------------- */
 .policy-content {
   max-width: 820px;
@@ -1182,7 +1106,6 @@ section { padding: 80px 0; }
 }
 
 @media (max-width: 900px) {
-  .course-grid { grid-template-columns: 1fr; }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .appeal-grid { grid-template-columns: repeat(2, 1fr); }
   .reason-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1270,6 +1193,30 @@ section { padding: 80px 0; }
   .price-table-wrapper--compact { max-width: 100%; }
   .compact-price-table th,
   .compact-price-table td { padding: 12px 10px; font-size: 0.9rem; }
+
+  /* Contact form: prevent horizontal touch scrolling on phones. */
+  .form-embed-wrapper,
+  .formmailer-html-container,
+  .formmailer-html-container form,
+  .formmailer-html-container form > p {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .formmailer-html-container {
+    overflow-x: hidden;
+  }
+  .formmailer-html-container form > p {
+    overflow-wrap: anywhere;
+  }
+  .formmailer-html-container input[type="text"] {
+    width: 100%;
+    min-width: 0;
+    margin-right: 0;
+  }
+  .formmailer-html-container input[type="text"][maxlength="4"] {
+    width: 29%;
+    margin-right: 2px;
+  }
 }
 
 /* Extra headroom on very narrow phones so the compact price tables never
@@ -1304,7 +1251,6 @@ section { padding: 80px 0; }
     white-space: nowrap;
   }
 }
-
 
 /* ---- Minor support fee table: always fit within the phone viewport -------- */
 .minor-support-table-wrapper {
@@ -1451,7 +1397,6 @@ section { padding: 80px 0; }
   .school-gallery { gap: 7px; }
 }
 
-
 /* Extra breathing room before student residence pricing */
 .residence-table-title { margin-top: 56px; }
 #residence-table-container { margin-top: 88px; }
@@ -1459,7 +1404,6 @@ section { padding: 80px 0; }
 @media (max-width: 768px) {
   #residence-table-container { margin-top: 72px; }
 }
-
 
 /* ---- Quick quote mobile stability ----------------------------------------- */
 .quote-page .quote-form,
@@ -1526,7 +1470,6 @@ section { padding: 80px 0; }
     overflow: hidden;
   }
 }
-
 
 /* ---- Monday-only start-date calendar ------------------------------------- */
 .monday-date-picker {
